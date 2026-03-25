@@ -5,40 +5,41 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Labs by Santiago | Agencia de Inteligencia Artificial</title>
     <meta name="description" content="Automatización y crecimiento con Inteligencia Artificial. Atención directa y personalizada con Santiago en Labs by Santiago.">
-
+    
     <!-- Google Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Outfit:wght@500;700;800&display=swap" rel="stylesheet">
-
+    
     <!-- Lucide Icons -->
     <script src="https://unpkg.com/lucide@latest"></script>
 
     <style>
         :root {
-            /* Branding Colors */
-            --primary: #1B4FFF;
-            --secondary: #00C2FF;
-            --accent: #FF6B35;
-
+            /* Cyberpunk / Dark Tech Theme */
+            --primary: #00CED1; /* Cyan Neon */
+            --secondary: #0088FF;
+            --accent: #FF0055;
+            
             /* UI Colors */
-            --bg-light: #F8FAFC;
-            --bg-white: #FFFFFF;
-            --text-dark: #0F172A;
-            --text-muted: #475569;
-            --border: #E2E8F0;
+            --bg-light: #000000;
+            --bg-white: #111111;
+            --text-dark: #FFFFFF;
+            --text-muted: #A0AAB2;
+            --border: rgba(255,255,255,0.1);
+            --border-glow: rgba(0, 206, 209, 0.4);
             --wa-green: #25D366;
-
+            
             /* Typography */
             --font-heading: 'Outfit', sans-serif;
             --font-body: 'Inter', sans-serif;
-
+            
             /* Effects */
             --transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-            --shadow-sm: 0 1px 2px 0 rgb(0 0 0 / 0.05);
-            --shadow-md: 0 4px 6px -1px rgb(0 0 0 / 0.1), 0 2px 4px -2px rgb(0 0 0 / 0.1);
-            --shadow-lg: 0 10px 15px -3px rgb(0 0 0 / 0.1), 0 4px 6px -4px rgb(0 0 0 / 0.1);
-            --shadow-hover: 0 20px 25px -5px rgb(0 0 0 / 0.1), 0 8px 10px -6px rgb(0 0 0 / 0.1);
+            --shadow-sm: 0 1px 2px 0 rgba(0,0,0,0.5);
+            --shadow-md: 0 4px 6px -1px rgba(0,0,0,0.5);
+            --shadow-lg: 0 10px 15px -3px rgba(0,0,0,0.5);
+            --shadow-hover: 0 20px 40px -10px rgba(0, 206, 209, 0.2);
         }
 
         * {
@@ -82,13 +83,14 @@
         }
 
         h2.section-title {
-            font-size: 2.75rem;
+            font-size: 3rem;
             margin-bottom: 4rem;
             text-align: center;
-            font-weight: 800;
+            font-weight: 900;
             letter-spacing: -0.02em;
+            text-transform: uppercase;
         }
-
+        
         .section-subtitle {
             text-align: center;
             color: var(--text-muted);
@@ -129,7 +131,7 @@
             box-shadow: 0 15px 30px -10px var(--primary);
             opacity: 0.95;
         }
-
+        
         .btn-outline {
             background: var(--bg-white);
             color: var(--text-dark);
@@ -147,7 +149,7 @@
             color: white;
             box-shadow: 0 4px 14px 0 rgba(37, 211, 102, 0.39);
         }
-
+        
         .btn-wa:hover {
             transform: translateY(-2px);
             box-shadow: 0 6px 20px rgba(37, 211, 102, 0.4);
@@ -160,19 +162,19 @@
             top: 0;
             left: 0;
             width: 100%;
-            background: rgba(255, 255, 255, 0.85);
+            background: rgba(0, 0, 0, 0.85);
             backdrop-filter: blur(16px);
             -webkit-backdrop-filter: blur(16px);
             z-index: 1000;
-            border-bottom: 1px solid rgba(226, 232, 240, 0.6);
+            border-bottom: 1px solid var(--border);
             padding: 20px 0;
             transition: var(--transition);
         }
 
         .navbar.scrolled {
             padding: 12px 0;
-            box-shadow: 0 4px 30px rgba(0,0,0,0.03);
-            background: rgba(255, 255, 255, 0.95);
+            box-shadow: 0 4px 20px rgba(0,0,0,0.6);
+            background: rgba(0, 0, 0, 0.95);
         }
 
         .nav-content {
@@ -215,7 +217,7 @@
             transition: var(--transition);
             font-size: 1rem;
         }
-
+        
         .nav-link:hover {
             color: var(--primary);
         }
@@ -223,22 +225,21 @@
         /* Hero */
         .hero {
             padding: 180px 0 100px;
-            background:
-                radial-gradient(circle at 10% 20%, rgba(27, 79, 255, 0.08) 0%, transparent 40%),
-                radial-gradient(circle at 90% 80%, rgba(0, 194, 255, 0.08) 0%, transparent 40%);
+            background: 
+                radial-gradient(circle at 10% 30%, rgba(0, 206, 209, 0.15) 0%, transparent 40%),
+                radial-gradient(circle at 90% 80%, rgba(0, 100, 255, 0.1) 0%, transparent 40%);
             min-height: 100vh;
             display: flex;
             align-items: center;
             position: relative;
         }
-
+        
         .hero::before {
             content: '';
             position: absolute;
             inset: 0;
-            background: url('data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIyNCIgaGVpZ2h0PSIyNCI+PGNpcmNsZSBjeD0iMSIgY3k9IjEiIHI9IjEiIGZpbGw9InJnYmEoMjI2LCAyMzIsIDI0MCwgMC41KSIvPjwvc3ZnPg==') repeat;
+            background: none;
             z-index: -1;
-            opacity: 0.6;
         }
 
         .hero-content {
@@ -254,7 +255,7 @@
             flex-wrap: wrap;
             justify-content: center;
         }
-
+        
         .badge {
             background: var(--bg-white);
             border: 1px solid var(--border);
@@ -268,7 +269,7 @@
             gap: 8px;
             box-shadow: var(--shadow-sm);
         }
-
+        
         .badge i {
             color: var(--primary);
             width: 16px;
@@ -276,10 +277,11 @@
         }
 
         .hero h1 {
-            font-size: 4.5rem;
+            font-size: 5rem;
             margin-bottom: 24px;
-            letter-spacing: -0.03em;
-            font-weight: 800;
+            letter-spacing: -0.04em;
+            font-weight: 900;
+            text-transform: uppercase;
         }
 
         .hero p {
@@ -323,12 +325,12 @@
             z-index: 1;
             overflow: hidden;
         }
-
+        
         .bento-card::after {
             content: '';
             position: absolute;
             top: 0; left: 0; right: 0; bottom: 0;
-            background: linear-gradient(135deg, rgba(27,79,255,0.03), rgba(0,194,255,0.03));
+            background: radial-gradient(circle at top right, rgba(0,206,209,0.08) 0%, transparent 60%);
             opacity: 0;
             transition: var(--transition);
             z-index: -1;
@@ -336,10 +338,10 @@
 
         .bento-card:hover {
             transform: translateY(-4px);
-            border-color: rgba(27,79,255,0.2);
+            border-color: var(--border-glow);
             box-shadow: var(--shadow-hover);
         }
-
+        
         .bento-card:hover::after {
             opacity: 1;
         }
@@ -351,15 +353,15 @@
         .bento-icon-wrapper {
             width: 56px;
             height: 56px;
-            background: var(--bg-white);
-            border-radius: 16px;
+            background: var(--primary);
+            border-radius: 50%;
             display: flex;
             align-items: center;
             justify-content: center;
             margin-bottom: 24px;
-            color: var(--primary);
-            box-shadow: var(--shadow-sm);
-            border: 1px solid var(--border);
+            color: #000000;
+            box-shadow: 0 0 15px rgba(0, 206, 209, 0.4);
+            border: none;
         }
 
         .bento-card h3 {
@@ -367,28 +369,27 @@
             margin-bottom: 12px;
             font-weight: 700;
         }
-
+        
         .bento-card p {
             font-size: 1.05rem;
             flex-grow: 1;
         }
-
+        
         .bento-image {
             margin-top: 32px;
             border-radius: 16px;
             overflow: hidden;
             border: 1px solid var(--border);
-            box-shadow: var(--shadow-md);
-            background: white;
+            background: #050505;
             padding: 16px;
         }
-
+        
         .mock-ui {
             display: flex;
             flex-direction: column;
             gap: 8px;
         }
-
+        
         .mock-line {
             height: 8px;
             border-radius: 4px;
@@ -413,16 +414,26 @@
             position: relative;
             aspect-ratio: 1;
             border-radius: 40px;
-            background: linear-gradient(135deg, var(--primary), var(--secondary));
-            padding: 4px;
-            box-shadow: 0 25px 50px -12px rgba(27, 79, 255, 0.25);
+            background: linear-gradient(135deg, var(--bg-white), #000);
+            padding: 1px;
+            box-shadow: 0 0 50px rgba(0, 206, 209, 0.1);
         }
-
+        
+        .brand-visual::before {
+            content: '';
+            position: absolute;
+            inset: -2px;
+            background: linear-gradient(135deg, var(--primary), transparent);
+            border-radius: 42px;
+            z-index: -1;
+            opacity: 0.5;
+        }
+        
         .brand-visual-inner {
             background: var(--bg-white);
             width: 100%;
             height: 100%;
-            border-radius: 36px;
+            border-radius: 39px;
             display: flex;
             align-items: center;
             justify-content: center;
@@ -430,11 +441,12 @@
             text-align: center;
             padding: 40px;
         }
-
+        
         .brand-visual-inner h3 {
-            font-size: 2.5rem;
+            font-size: 3rem;
             color: var(--text-dark);
             margin: 24px 0 8px;
+            font-weight: 900;
         }
 
         .feature-list {
@@ -452,19 +464,20 @@
             flex-shrink: 0;
             width: 56px;
             height: 56px;
-            background: rgba(255, 107, 53, 0.1);
-            color: var(--accent);
-            border-radius: 16px;
+            background: rgba(0, 206, 209, 0.1);
+            color: var(--primary);
+            border-radius: 50%;
             display: flex;
             align-items: center;
             justify-content: center;
+            border: 1px solid rgba(0, 206, 209, 0.2);
         }
 
         .feature-content h4 {
             font-size: 1.35rem;
             margin-bottom: 8px;
         }
-
+        
         .feature-content p {
             font-size: 1.1rem;
         }
@@ -504,56 +517,64 @@
             width: 96px;
             height: 96px;
             background: var(--bg-white);
-            border: 2px solid var(--border);
+            border: 1px solid var(--border);
             border-radius: 50%;
             display: flex;
             align-items: center;
             justify-content: center;
             font-family: var(--font-heading);
             font-size: 2.5rem;
-            font-weight: 800;
-            color: var(--text-muted);
+            font-weight: 900;
+            color: var(--primary);
             margin: 0 auto 32px;
-            box-shadow: 0 0 0 16px var(--bg-white);
+            box-shadow: 0 0 0 16px var(--bg-light);
             transition: var(--transition);
         }
 
         .step:hover .step-number {
+            background: var(--primary);
+            color: #000;
             border-color: var(--primary);
-            color: var(--primary);
             transform: scale(1.05);
-            box-shadow: 0 10px 30px -10px rgba(27, 79, 255, 0.3), 0 0 0 16px var(--bg-white);
+            box-shadow: 0 0 30px rgba(0, 206, 209, 0.4), 0 0 0 16px var(--bg-light);
         }
 
         .step h4 {
             font-size: 1.5rem;
             margin-bottom: 16px;
         }
-
+        
         .step p {
             font-size: 1.05rem;
             padding: 0 16px;
         }
 
         /* Final CTA */
+        .cta-wrapper {
+            background-color: var(--bg-light); /* Black background */
+            padding: 120px 24px;
+        }
+
         .cta {
-            margin: 0 24px 60px;
+            margin: 0 auto;
+            max-width: 1200px;
             border-radius: 40px;
-            background: linear-gradient(135deg, #0F172A, #1E293B);
+            background: #111111;
+            border: 1px solid rgba(0, 206, 209, 0.2);
             color: white;
             text-align: center;
             padding: 100px 40px;
             position: relative;
             overflow: hidden;
-            box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.25);
+            box-shadow: 0 0 50px rgba(0, 206, 209, 0.1);
         }
-
+        
         .cta::before {
             content: '';
             position: absolute;
             inset: 0;
-            background: radial-gradient(circle at top right, rgba(27,79,255,0.4), transparent 50%),
-                        radial-gradient(circle at bottom left, rgba(0,194,255,0.3), transparent 50%);
+            background: radial-gradient(circle at top right, rgba(0,206,209,0.2), transparent 50%),
+                        radial-gradient(circle at bottom left, rgba(0,85,255,0.2), transparent 50%);
         }
 
         .cta-content {
@@ -580,11 +601,11 @@
 
         /* Footer */
         .footer {
-            background: var(--bg-white);
+            background: #050505;
             padding: 60px 0 40px;
             border-top: 1px solid var(--border);
         }
-
+        
         .footer-content {
             display: flex;
             flex-direction: column;
@@ -614,12 +635,12 @@
             transition: var(--transition);
             text-decoration: none;
         }
-
+        
         .floating-wa svg {
             width: 32px;
             height: 32px;
         }
-
+        
         .floating-wa::before {
             content: '';
             position: absolute;
@@ -668,16 +689,37 @@
 
         @media (max-width: 768px) {
             .nav-links { display: none; }
-
+            
+            .logo { font-size: 1.35rem; gap: 8px; }
+            .logo-icon { width: 24px; height: 24px; }
+            
+            .navbar .btn-wa {
+                padding: 10px;
+                width: 44px;
+                height: 44px;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                border-radius: 50%;
+            }
+            .navbar .btn-wa i {
+                margin: 0 !important;
+                width: 22px;
+                height: 22px;
+            }
+            .wa-text {
+                display: none;
+            }
+            
             .hero { padding: 140px 0 60px; }
             .hero h1 { font-size: 2.75rem; }
-
+            
             .bento-grid { grid-template-columns: 1fr; }
             .bento-card.large { grid-column: span 1; }
-
+            
             .features-grid { grid-template-columns: 1fr; }
             .brand-visual { max-width: 400px; margin: 0 auto; }
-
+            
             .steps-container {
                 grid-template-columns: 1fr;
                 gap: 48px;
@@ -704,41 +746,60 @@
             }
             .step h4 { margin-top: 8px; margin-bottom: 8px; }
             .step p { padding: 0; }
-
+            
             .cta h2 { font-size: 2.5rem; }
-            .cta { margin: 0 16px 40px; padding: 60px 24px; }
+            .cta-wrapper { padding: 80px 16px; }
+            .cta { padding: 60px 24px; }
         }
 
         .bento-card.highlighted {
-            background: linear-gradient(135deg, var(--primary), var(--secondary));
-            color: white;
-            border: none;
-            box-shadow: 0 20px 40px -10px rgba(27, 79, 255, 0.4);
+            background: linear-gradient(135deg, rgba(0,206,209,0.1) 0%, rgba(17,17,17,1) 50%, rgba(0,85,255,0.1) 100%);
+            border: 1px solid var(--primary);
+            box-shadow: 0 0 30px rgba(0, 206, 209, 0.3), inset 0 0 20px rgba(0,206,209,0.1);
             position: relative;
             overflow: hidden;
+            transform: scale(1.02);
+            z-index: 10;
         }
 
+        .bento-card.highlighted:hover {
+            transform: translateY(-4px) scale(1.02);
+            box-shadow: 0 0 50px rgba(0, 206, 209, 0.6), inset 0 0 30px rgba(0,206,209,0.2);
+            border-color: #fff;
+        }
+        
         .bento-card.highlighted h3 {
-            color: white;
+            color: var(--primary);
+            font-size: 1.8rem;
+            text-shadow: 0 0 15px rgba(0,206,209,0.4);
         }
-
+        
+        .bento-card.highlighted p {
+            font-size: 1.15rem;
+            color: white !important;
+        }
+        
         .bento-card.highlighted .bento-icon-wrapper {
-            background: rgba(255, 255, 255, 0.2);
-            color: white;
-            border: 1px solid rgba(255, 255, 255, 0.3);
-            backdrop-filter: blur(12px);
-            -webkit-backdrop-filter: blur(12px);
+            background: var(--primary);
+            color: #000;
+            border: none;
+            box-shadow: 0 0 30px rgba(0, 206, 209, 0.8);
+            transform: scale(1.1);
         }
-
+        
         .bento-card.highlighted::before {
             content: '';
             position: absolute;
-            top: 0; right: 0;
-            width: 250px; height: 250px;
-            background: radial-gradient(circle, rgba(255,255,255,0.2) 0%, transparent 70%);
-            border-radius: 50%;
-            transform: translate(30%, -30%);
+            top: -50%; left: -50%;
+            width: 200%; height: 200%;
+            background: radial-gradient(circle, rgba(0,206,209,0.15) 0%, transparent 60%);
             pointer-events: none;
+            animation: pulseGlow 4s infinite alternate;
+        }
+
+        @keyframes pulseGlow {
+            0% { opacity: 0.6; transform: scale(0.9); }
+            100% { opacity: 1; transform: scale(1.1); }
         }
     </style>
 </head>
@@ -751,7 +812,7 @@
                 <i data-lucide="bot" class="logo-icon"></i>
                 Labs<span> by Santiago</span>
             </a>
-
+            
             <div class="nav-links">
                 <a href="#servicios" class="nav-link">Servicios</a>
                 <a href="#nosotros" class="nav-link">Por qué Labs by Santiago</a>
@@ -759,8 +820,8 @@
             </div>
 
             <a href="https://wa.me/17202172431" class="btn btn-wa" target="_blank">
-                <i data-lucide="phone"></i>
-                +1 720 217 2431
+                <i data-lucide="phone" style="margin-right: 8px;"></i>
+                <span class="wa-text">+1 720 217 2431</span>
             </a>
         </div>
     </nav>
@@ -772,15 +833,15 @@
                 <div class="badge"><i data-lucide="zap"></i> Resultados en 30 días</div>
                 <div class="badge"><i data-lucide="user-check"></i> Consultoría 1 a 1</div>
             </div>
-
+            
             <h1 class="reveal" style="transition-delay: 0.1s;">
                 Automatiza y escala tu negocio usando <span class="text-gradient">Inteligencia Artificial</span>
             </h1>
-
+            
             <p class="reveal" style="transition-delay: 0.2s;">
                 Ayudamos a dueños de negocios a recuperar su tiempo, automatizar procesos y ventas para crecer de forma acelerada sin necesidad de contratar más personal.
             </p>
-
+            
             <div class="hero-actions reveal" style="transition-delay: 0.3s;">
                 <a href="https://wa.me/17202172431" class="btn btn-primary" target="_blank">
                     <i data-lucide="calendar"></i>
@@ -798,14 +859,14 @@
         <div class="container">
             <h2 class="section-title reveal">Servicios Especializados<br>Para Tu Crecimiento</h2>
             <p class="section-subtitle reveal">Diseñamos soluciones a medida que impactan directamente en tus ventas y eficiencia operativa.</p>
-
+            
             <div class="bento-grid">
                 <!-- Web Design -->
                 <div class="bento-card large reveal">
                     <div class="bento-icon-wrapper"><i data-lucide="layout" style="width: 28px; height: 28px;"></i></div>
                     <h3>Diseño de Páginas Web Profesionales</h3>
                     <p>Creamos sitios web modernos, rápidos y orientados a conversión. Tu mejor vendedor estará trabajando 24/7 atrayendo a los clientes correctos en piloto automático.</p>
-
+                    
                     <div class="bento-image">
                         <div class="mock-ui">
                             <div class="mock-line" style="width: 100%; background: #E2E8F0; height: 16px;"></div>
@@ -854,10 +915,10 @@
                 <div class="bento-card large highlighted reveal" style="transition-delay: 0.2s;">
                     <div style="display: flex; justify-content: space-between; align-items: flex-start; margin-bottom: 24px; position: relative; z-index: 2;">
                         <div class="bento-icon-wrapper" style="margin-bottom: 0;"><i data-lucide="cpu" style="width: 28px; height: 28px;"></i></div>
-                        <span style="background: rgba(255,255,255,0.2); color: white; padding: 6px 14px; border-radius: 50px; font-size: 0.85rem; font-weight: 600; border: 1px solid rgba(255,255,255,0.3); backdrop-filter: blur(10px);">Servicio Premium</span>
+                        <span style="background: rgba(0,206,209,0.1); color: var(--primary); padding: 6px 14px; border-radius: 50px; font-size: 0.85rem; font-weight: 700; border: 1px solid rgba(0,206,209,0.3);">Premium</span>
                     </div>
-                    <h3 style="position: relative; z-index: 2;">Soluciones 100% Personalizadas</h3>
-                    <p style="color: rgba(255,255,255,0.9); position: relative; z-index: 2;">Si tienes un problema único o un cuello de botella específico, lo resolvemos. Mapeamos tu flujo de trabajo y construimos herramientas a tu medida desde cero.</p>
+                    <h3 style="position: relative; z-index: 2;">Soluciones Personalizadas</h3>
+                    <p style="color: rgba(255,255,255,0.8); position: relative; z-index: 2;">Si tienes un problema único o un cuello de botella específico, lo resolvemos. Mapeamos tu flujo de trabajo y construimos herramientas a tu medida desde cero.</p>
                 </div>
             </div>
         </div>
@@ -867,16 +928,16 @@
     <section id="nosotros" class="section why-santiago">
         <div class="container">
             <h2 class="section-title reveal">¿Por Qué Elegir Labs by Santiago?</h2>
-
+            
             <div class="features-grid">
                 <div class="brand-visual reveal">
                     <div class="brand-visual-inner">
-                        <i data-lucide="shield-check" style="width: 80px; height: 80px; color: var(--primary);"></i>
+                        <i data-lucide="shield-check" style="width: 80px; height: 80px; color: var(--primary); filter: drop-shadow(0 0 10px rgba(0,206,209,0.5));"></i>
                         <h3>Labs by Santiago</h3>
-                        <p style="color: var(--text-muted); font-size: 1.125rem; font-weight: 500;">Boutique & Personal</p>
+                        <p style="color: var(--primary); font-size: 1.125rem; font-weight: 600; text-transform: uppercase; letter-spacing: 2px;">Boutique & Personal</p>
                     </div>
                 </div>
-
+                
                 <div class="feature-list">
                     <div class="feature-item reveal" style="transition-delay: 0.1s;">
                         <div class="feature-icon"><i data-lucide="user-check" style="width: 28px; height: 28px;"></i></div>
@@ -885,7 +946,7 @@
                             <p>Sin cuentas ni intermediarios. Santiago trabaja directamente en tu proyecto, entendiendo a fondo las necesidades particulares de tu modelo de negocio.</p>
                         </div>
                     </div>
-
+                    
                     <div class="feature-item reveal" style="transition-delay: 0.2s;">
                         <div class="feature-icon"><i data-lucide="bar-chart" style="width: 28px; height: 28px;"></i></div>
                         <div class="feature-content">
@@ -893,7 +954,7 @@
                             <p>No usamos tecnología por usarla. Implementamos herramientas de Inteligencia Artificial que tienen un impacto directo comprobable en tus ingresos y operaciones.</p>
                         </div>
                     </div>
-
+                    
                     <div class="feature-item reveal" style="transition-delay: 0.3s;">
                         <div class="feature-icon"><i data-lucide="life-buoy" style="width: 28px; height: 28px;"></i></div>
                         <div class="feature-content">
@@ -911,20 +972,20 @@
         <div class="container">
             <h2 class="section-title reveal">Un Proceso Simple y Transparente</h2>
             <p class="section-subtitle reveal">Nuestra metodología de trabajo en 3 pasos diseñada para acelerar la implementación y obtener resultados inmediatos.</p>
-
+            
             <div class="steps-container">
                 <div class="step reveal">
                     <div class="step-number">1</div>
                     <h4>Diagnóstico Gratuito</h4>
                     <p>Agendamos una llamada de 30 min para auditar tus procesos, encontrar ineficiencias y mapear cómo la automatización y la IA pueden solucionar el problema.</p>
                 </div>
-
+                
                 <div class="step reveal" style="transition-delay: 0.1s;">
                     <div class="step-number">2</div>
                     <h4>Desarrollo a Medida</h4>
                     <p>Diseñamos e implementamos los flujos de trabajo en segundo plano, adaptando algoritmos y bots con tu voz de marca y bases de datos.</p>
                 </div>
-
+                
                 <div class="step reveal" style="transition-delay: 0.2s;">
                     <div class="step-number">3</div>
                     <h4>Lanzamiento y Resultados</h4>
@@ -935,16 +996,18 @@
     </section>
 
     <!-- Bottom CTA -->
-    <section class="cta reveal">
-        <div class="cta-content">
-            <h2>¿Listo para transformar la operatividad de tu negocio?</h2>
-            <p>El mercado cambia rápido. Deja de perder recursos valiosos en tareas manuales e invierte hoy en sistemas que trabajen por ti las 24 horas.</p>
-            <a href="https://wa.me/17202172431" class="btn btn-wa" style="font-size: 1.25rem; padding: 18px 40px;" target="_blank">
-                <i data-lucide="message-circle" style="width: 24px; height: 24px;"></i>
-                Hablar con Santiago Ahora
-            </a>
-        </div>
-    </section>
+    <div class="cta-wrapper">
+        <section class="cta reveal">
+            <div class="cta-content">
+                <h2>¿Listo para transformar tu negocio?</h2>
+                <p>El mercado cambia rápido. Deja de perder recursos valiosos en tareas manuales e invierte hoy en sistemas que trabajen por ti las 24 horas.</p>
+                <a href="https://wa.me/17202172431" class="btn btn-wa" style="font-size: 1.25rem; padding: 18px 40px;" target="_blank">
+                    <i data-lucide="message-circle" style="width: 24px; height: 24px;"></i>
+                    Hablar con Santiago Ahora
+                </a>
+            </div>
+        </section>
+    </div>
 
     <!-- Footer -->
     <footer class="footer">
@@ -985,7 +1048,7 @@
 
         // Scroll Reveal Animations
         const revealElements = document.querySelectorAll('.reveal');
-
+        
         const revealOptions = {
             threshold: 0.15,
             rootMargin: "0px 0px -50px 0px"
