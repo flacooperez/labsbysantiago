@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Labs by Santiago | Agencia de Inteligencia Artificial</title>
     <meta name="description" content="Automatización y crecimiento con Inteligencia Artificial. Atención directa y personalizada con Santiago en Labs by Santiago.">
-    
+    <link rel="icon" href="favicon.svg" type="image/svg+xml">
     <!-- Google Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -156,6 +156,33 @@
             background-color: #20BA56;
         }
 
+        .btn-ig {
+            background: linear-gradient(45deg, #f09433 0%, #e6683c 25%, #dc2743 50%, #cc2366 75%, #bc1888 100%);
+            color: white;
+            box-shadow: 0 4px 14px 0 rgba(225, 48, 108, 0.39);
+        }
+        
+        .btn-ig:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(225, 48, 108, 0.5);
+            filter: brightness(1.1);
+        }
+
+        .btn-icon {
+            padding: 0 !important;
+            width: 48px;
+            height: 48px;
+            border-radius: 50% !important;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-shrink: 0;
+        }
+
+        .btn-icon i, .btn-icon svg {
+            margin: 0 !important;
+        }
+
         /* Navbar */
         .navbar {
             position: fixed;
@@ -181,6 +208,22 @@
             display: flex;
             justify-content: space-between;
             align-items: center;
+        }
+
+        .nav-left, .nav-right {
+            display: flex;
+            align-items: center;
+        }
+
+        .nav-left {
+            flex: 1;
+            justify-content: flex-start;
+        }
+
+        .nav-right {
+            flex: 1;
+            justify-content: flex-end;
+            gap: 12px;
         }
 
         .logo {
@@ -617,28 +660,37 @@
             font-size: 0.95rem;
         }
 
-        /* Floating WhatsApp */
-        .floating-wa {
+        /* Floating Actions */
+        .floating-actions {
             position: fixed;
             bottom: 30px;
             right: 30px;
+            display: flex;
+            gap: 16px;
+            z-index: 1000;
+        }
+        
+        .floating-btn {
             width: 64px;
             height: 64px;
-            background-color: var(--wa-green);
-            color: white;
             border-radius: 50%;
             display: flex;
             align-items: center;
             justify-content: center;
-            box-shadow: 0 4px 20px rgba(37, 211, 102, 0.4);
-            z-index: 1000;
+            color: white;
             transition: var(--transition);
             text-decoration: none;
+            position: relative;
         }
-        
-        .floating-wa svg {
+
+        .floating-btn svg, .floating-btn i {
             width: 32px;
             height: 32px;
+        }
+
+        .floating-wa {
+            background-color: var(--wa-green);
+            box-shadow: 0 4px 20px rgba(37, 211, 102, 0.4);
         }
         
         .floating-wa::before {
@@ -649,11 +701,22 @@
             border: 2px solid var(--wa-green);
             animation: ripple 2s infinite;
             opacity: 0;
+            pointer-events: none;
         }
 
         .floating-wa:hover {
             transform: scale(1.1) translateY(-5px);
             background-color: #20BA56;
+        }
+
+        .floating-ig {
+            background: linear-gradient(45deg, #f09433 0%, #e6683c 25%, #dc2743 50%, #cc2366 75%, #bc1888 100%);
+            box-shadow: 0 4px 20px rgba(225, 48, 108, 0.4);
+        }
+
+        .floating-ig:hover {
+            transform: scale(1.1) translateY(-5px);
+            filter: brightness(1.1);
         }
 
         @keyframes ripple {
@@ -673,7 +736,6 @@
             transform: translateY(0);
         }
 
-        /* Responsive */
         @media (max-width: 1024px) {
             .hero h1 { font-size: 3.5rem; }
             .bento-grid {
@@ -685,31 +747,25 @@
             .features-grid {
                 gap: 40px;
             }
+            .nav-links { gap: 16px; font-size: 0.9rem; }
+            .navbar .wa-text, .navbar .ig-text { display: none; }
+            .navbar .btn { padding: 0; border-radius: 50%; width: 44px; height: 44px; display: flex; align-items: center; justify-content: center; }
+            .navbar .btn i, .navbar .btn svg { margin: 0 !important; }
+        }
+
+        @media (max-width: 850px) {
+            .nav-links { display: none; }
         }
 
         @media (max-width: 768px) {
             .nav-links { display: none; }
             
-            .logo { font-size: 1.35rem; gap: 8px; }
+            .logo { font-size: 1.35rem; gap: 8px; margin-right: 0;}
             .logo-icon { width: 24px; height: 24px; }
             
-            .navbar .btn-wa {
-                padding: 10px;
-                width: 44px;
-                height: 44px;
-                display: flex;
-                align-items: center;
-                justify-content: center;
-                border-radius: 50%;
-            }
-            .navbar .btn-wa i {
-                margin: 0 !important;
-                width: 22px;
-                height: 22px;
-            }
-            .wa-text {
-                display: none;
-            }
+            .navbar .wa-text, .navbar .ig-text { display: none; }
+            .navbar .btn { padding: 0; border-radius: 50%; width: 42px; height: 42px; display: flex; align-items: center; justify-content: center; }
+            .navbar .btn i, .navbar .btn svg { margin: 0 !important; width: 20px; height: 20px; }
             
             .hero { padding: 140px 0 60px; }
             .hero h1 { font-size: 2.75rem; }
@@ -808,21 +864,28 @@
     <!-- Navbar -->
     <nav class="navbar" id="navbar">
         <div class="container nav-content">
-            <a href="#" class="logo">
-                <i data-lucide="bot" class="logo-icon"></i>
-                Labs<span> by Santiago</span>
-            </a>
+            <div class="nav-left">
+                <a href="#" class="logo">
+                    <i data-lucide="bot" class="logo-icon"></i>
+                    Labs<span> by Santiago</span>
+                </a>
+            </div>
             
             <div class="nav-links">
                 <a href="#servicios" class="nav-link">Servicios</a>
-                <a href="#nosotros" class="nav-link">Por qué Labs by Santiago</a>
+                <a href="#nosotros" class="nav-link">Por qué Elegirnos</a>
                 <a href="#proceso" class="nav-link">Metodología</a>
             </div>
 
-            <a href="https://wa.me/17202172431" class="btn btn-wa" target="_blank">
-                <i data-lucide="phone" style="margin-right: 8px;"></i>
-                <span class="wa-text">+1 720 217 2431</span>
-            </a>
+            <div class="nav-right">
+                <a href="index3-en.html" style="text-decoration: none; font-weight: 700; color: var(--text-muted); font-size: 0.95rem; border: 1px solid var(--border); padding: 6px 12px; border-radius: 20px; transition: var(--transition);" onmouseover="this.style.borderColor='var(--primary)'; this.style.color='var(--primary)';" onmouseout="this.style.borderColor='var(--border)'; this.style.color='var(--text-muted)';">EN</a>
+                <a href="https://instagram.com/labsbysantiago" class="btn btn-ig btn-icon" target="_blank" title="Instagram @labsbysantiago">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect width="20" height="20" x="2" y="2" rx="5" ry="5"/><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"/><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"/></svg>
+                </a>
+                <a href="https://wa.me/17202172431" class="btn btn-wa btn-icon" target="_blank" title="WhatsApp +1 720 217 2431">
+                    <i data-lucide="phone"></i>
+                </a>
+            </div>
         </div>
     </nav>
 
@@ -900,8 +963,8 @@
                 <!-- Content Creation -->
                 <div class="bento-card reveal">
                     <div class="bento-icon-wrapper"><i data-lucide="video" style="width: 28px; height: 28px;"></i></div>
-                    <h3>Contenido con IA</h3>
-                    <p>Producción de contenido estratégico para Instagram y TikTok. Guiones, posts y reels generados y optimizados para alcance masivo usando inteligencia artificial.</p>
+                    <h3>Programación de Contenido IA</h3>
+                    <p>Programamos todo tu contenido con IA. Creamos guiones, posts y reels estratégicos, y los dejamos agendados para que se publiquen automáticamente en todas tus redes.</p>
                 </div>
 
                 <!-- Gmail Auto -->
@@ -1001,10 +1064,15 @@
             <div class="cta-content">
                 <h2>¿Listo para transformar tu negocio?</h2>
                 <p>El mercado cambia rápido. Deja de perder recursos valiosos en tareas manuales e invierte hoy en sistemas que trabajen por ti las 24 horas.</p>
-                <a href="https://wa.me/17202172431" class="btn btn-wa" style="font-size: 1.25rem; padding: 18px 40px;" target="_blank">
-                    <i data-lucide="message-circle" style="width: 24px; height: 24px;"></i>
-                    Hablar con Santiago Ahora
-                </a>
+                <div style="display: flex; gap: 16px; justify-content: center; align-items: center; flex-wrap: wrap;">
+                    <a href="https://wa.me/17202172431" class="btn btn-wa" style="font-size: 1.25rem; padding: 18px 40px;" target="_blank">
+                        <i data-lucide="message-circle" style="width: 24px; height: 24px; margin-right: 8px;"></i>
+                        Hablar con Santiago Ahora
+                    </a>
+                    <a href="https://instagram.com/labsbysantiago" class="btn btn-ig btn-icon" style="width: 64px; height: 64px;" target="_blank" title="Instagram @labsbysantiago">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect width="20" height="20" x="2" y="2" rx="5" ry="5"/><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"/><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"/></svg>
+                    </a>
+                </div>
             </div>
         </section>
     </div>
@@ -1020,16 +1088,26 @@
                 Agencia especializada en Diseño Web, SEO y Automatizaciones de IA.<br>
                 Teléfono: +1 720 217 2431
             </p>
+            <div style="display: flex; gap: 24px; margin-top: 8px;">
+                <a href="https://instagram.com/labsbysantiago" target="_blank" style="color: var(--text-muted); transition: var(--transition); display: block;" onmouseover="this.style.color='#E1306C'; this.style.transform='scale(1.1)';" onmouseout="this.style.color='var(--text-muted)'; this.style.transform='scale(1)';">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect width="20" height="20" x="2" y="2" rx="5" ry="5"/><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"/><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"/></svg>
+                </a>
+            </div>
             <p style="margin-top: 16px; font-size: 0.875rem; color: #94A3B8;">
                 © 2026 Labs by Santiago. Todos los derechos reservados.
             </p>
         </div>
     </footer>
 
-    <!-- Floating WhatsApp Button -->
-    <a href="https://wa.me/17202172431" class="floating-wa" target="_blank" aria-label="Contactar por WhatsApp">
-        <i data-lucide="message-circle"></i>
-    </a>
+    <!-- Floating Actions -->
+    <div class="floating-actions">
+        <a href="https://instagram.com/labsbysantiago" class="floating-btn floating-ig" target="_blank" aria-label="Instagram">
+            <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect width="20" height="20" x="2" y="2" rx="5" ry="5"/><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"/><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"/></svg>
+        </a>
+        <a href="https://wa.me/17202172431" class="floating-btn floating-wa" target="_blank" aria-label="Contactar por WhatsApp">
+            <i data-lucide="message-circle"></i>
+        </a>
+    </div>
 
     <!-- Scripts -->
     <script>
