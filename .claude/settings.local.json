@@ -1,7 +1,28 @@
 {
   "permissions": {
     "allow": [
-      "Bash(npx tsc:*)"
+      "Bash(npx tsc:*)",
+      "Read(//c/Users/Usuario/Desktop/editor-pro-max-main/public/assets 2>/dev/**)",
+      "Bash(find C:UsersUsuarioDesktopeditor-pro-max-main -name *.mp4 -o -name *.mov -o -name *.webm)",
+      "Bash(ffmpeg -version)",
+      "Bash(ffprobe -version)",
+      "Bash(python3 -c \"import sys,json; d=json.load\\(sys.stdin\\); [print\\(f''''  {s[codec_type]}: {s.get\\(codec_name,?\\)} | {s.get\\(width,\\)}x{s.get\\(height,\\)} | dur={s.get\\(duration,?\\)}s''''\\) for s in d[''''streams'''']]\")",
+      "Bash(done)",
+      "Bash(winget install:*)",
+      "Bash(where ffmpeg:*)",
+      "Read(//c/Users/Usuario/AppData/Local/**)",
+      "Bash(pip show:*)",
+      "Bash(pip3 show:*)",
+      "Bash(node remove_silence.js)",
+      "Bash(py --version)",
+      "Bash(pip install:*)",
+      "Bash(python -m pip install openai-whisper)",
+      "Bash(PYTHON=\"/c/Users/Usuario/AppData/Local/Programs/Python/Python311/python.exe\")",
+      "Bash(\"$PYTHON\" \"C:/Users/Usuario/Desktop/editor-pro-max-main/output/generar_subtitulos_ass.py\")",
+      "Bash(powershell -Command \":*)",
+      "Bash(\"/c/Users/Usuario/AppData/Local/Programs/Python/Python311/python.exe\" \"C:/Users/Usuario/Desktop/editor-pro-max-main/output/burn_subs.py\")",
+      "Bash(\"/c/Users/Usuario/AppData/Local/Programs/Python/Python311/python.exe\" \"C:/Users/Usuario/Desktop/editor-pro-max-main/output/burn2.py\")",
+      "Bash(\"/c/Users/Usuario/AppData/Local/Programs/Python/Python311/python.exe\" \"C:/Users/Usuario/Desktop/editor-pro-max-main/output/pro_pipeline.py\")"
     ]
   }
 }
