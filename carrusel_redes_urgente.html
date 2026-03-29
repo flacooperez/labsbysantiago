@@ -1,0 +1,567 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Carrusel — 5 señales | Labs by Santiago</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;500;600;700;800;900&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  :root {
+    --cyan:    #00CED1;
+    --cyan2:   #00F5FF;
+    --blue:    #0088FF;
+    --red:     #FF0055;
+    --black:   #000000;
+    --dark:    #080A0F;
+    --surface: #0F1117;
+    --border:  rgba(255,255,255,0.08);
+    --text:    #F0F4FF;
+    --muted:   #6B7A99;
+  }
+
+  body {
+    background: #050709;
+    font-family: 'Inter', sans-serif;
+    padding: 48px 20px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 28px;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  .page-label {
+    font-family: 'Outfit', sans-serif;
+    font-size: 13px;
+    font-weight: 700;
+    letter-spacing: 4px;
+    text-transform: uppercase;
+    color: var(--muted);
+    text-align: center;
+  }
+
+  /* ─── BASE SLIDE ─── */
+  .slide {
+    width: 1080px;
+    height: 1080px;
+    position: relative;
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: flex-start;
+    flex-shrink: 0;
+    background: var(--dark);
+  }
+
+  /* Número de slide */
+  .slide-num {
+    position: absolute;
+    top: 54px;
+    right: 60px;
+    font-family: 'Inter', sans-serif;
+    font-size: 18px;
+    font-weight: 500;
+    letter-spacing: 3px;
+    color: rgba(255,255,255,0.18);
+    z-index: 30;
+  }
+
+  /* Logo */
+  .logo {
+    position: absolute;
+    bottom: 54px;
+    right: 60px;
+    display: flex;
+    align-items: center;
+    gap: 9px;
+    z-index: 30;
+  }
+  .logo-icon {
+    width: 22px;
+    height: 22px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  .logo-icon svg {
+    width: 18px;
+    height: 18px;
+    filter: drop-shadow(0 0 6px var(--cyan));
+  }
+  .logo-text {
+    font-family: 'Outfit', sans-serif;
+    font-size: 18px;
+    font-weight: 700;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    color: rgba(255,255,255,0.3);
+  }
+
+  /* ══════════════════════════════
+     SLIDE 1 — PORTADA
+  ══════════════════════════════ */
+  .s1 {
+    background: var(--black);
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    padding: 80px;
+  }
+  /* Orbs de fondo */
+  .s1-orb-1 {
+    position: absolute;
+    width: 560px; height: 560px;
+    border-radius: 50%;
+    background: var(--cyan);
+    filter: blur(120px);
+    opacity: 0.13;
+    top: -140px; left: -140px;
+    z-index: 1;
+    pointer-events: none;
+  }
+  .s1-orb-2 {
+    position: absolute;
+    width: 500px; height: 500px;
+    border-radius: 50%;
+    background: var(--blue);
+    filter: blur(100px);
+    opacity: 0.12;
+    bottom: -120px; right: -100px;
+    z-index: 1;
+    pointer-events: none;
+  }
+  /* Grid lines sutil */
+  .s1-grid {
+    position: absolute;
+    inset: 0;
+    background-image:
+      linear-gradient(rgba(0,206,209,0.04) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(0,206,209,0.04) 1px, transparent 1px);
+    background-size: 90px 90px;
+    z-index: 2;
+  }
+  .s1-content { position: relative; z-index: 10; }
+  .s1-eyebrow {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    background: rgba(0,206,209,0.08);
+    border: 1px solid rgba(0,206,209,0.25);
+    border-radius: 100px;
+    padding: 8px 22px;
+    font-family: 'Outfit', sans-serif;
+    font-size: 20px;
+    font-weight: 700;
+    letter-spacing: 4px;
+    text-transform: uppercase;
+    color: var(--cyan);
+    margin-bottom: 44px;
+  }
+  .s1-number {
+    font-family: 'Outfit', sans-serif;
+    font-size: 210px;
+    font-weight: 900;
+    letter-spacing: -10px;
+    line-height: 0.85;
+    background: linear-gradient(135deg, var(--cyan), var(--cyan2), var(--blue));
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    filter: drop-shadow(0 0 40px rgba(0,206,209,0.4));
+    display: block;
+    margin-bottom: 8px;
+  }
+  .s1-word-senales {
+    font-family: 'Outfit', sans-serif;
+    font-size: 88px;
+    font-weight: 900;
+    letter-spacing: -3px;
+    line-height: 1;
+    color: var(--text);
+    text-transform: uppercase;
+    display: block;
+    margin-bottom: 10px;
+  }
+  .s1-desc-line {
+    font-family: 'Inter', sans-serif;
+    font-size: 30px;
+    font-weight: 400;
+    color: var(--muted);
+    letter-spacing: 1px;
+    margin-top: 24px;
+    display: block;
+  }
+  .s1-emoji {
+    font-size: 56px;
+    display: block;
+    margin-bottom: 32px;
+    line-height: 1;
+    filter: drop-shadow(0 0 20px rgba(255,0,85,0.6));
+  }
+  /* Corner brackets */
+  .bracket { position: absolute; width: 60px; height: 60px; z-index: 5; }
+  .bracket-tl { top: 48px; left: 48px; border-top: 2px solid rgba(0,206,209,0.3); border-left: 2px solid rgba(0,206,209,0.3); }
+  .bracket-tr { top: 48px; right: 48px; border-top: 2px solid rgba(0,206,209,0.3); border-right: 2px solid rgba(0,206,209,0.3); }
+  .bracket-bl { bottom: 48px; left: 48px; border-bottom: 2px solid rgba(0,206,209,0.3); border-left: 2px solid rgba(0,206,209,0.3); }
+  .bracket-br-deco { bottom: 48px; right: 48px; border-bottom: 2px solid rgba(0,206,209,0.3); border-right: 2px solid rgba(0,206,209,0.3); }
+
+  /* ══════════════════════════════
+     SLIDES 2–6 — SEÑALES
+  ══════════════════════════════ */
+  .s-signal {
+    padding: 80px 80px 80px 96px;
+    background: var(--dark);
+  }
+  /* Borde izquierdo cyan */
+  .s-signal::before {
+    content: '';
+    position: absolute;
+    left: 0; top: 0; bottom: 0;
+    width: 5px;
+    background: linear-gradient(180deg, var(--cyan), var(--blue));
+    z-index: 20;
+  }
+  /* Número fantasma de fondo */
+  .ghost-num {
+    position: absolute;
+    font-family: 'Outfit', sans-serif;
+    font-size: 380px;
+    font-weight: 900;
+    letter-spacing: -20px;
+    line-height: 1;
+    background: linear-gradient(135deg, rgba(0,206,209,0.06), rgba(0,136,255,0.04));
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    right: 40px;
+    bottom: 60px;
+    z-index: 1;
+    pointer-events: none;
+    user-select: none;
+  }
+  /* Orb sutil en esquina */
+  .s-signal-orb {
+    position: absolute;
+    width: 420px; height: 420px;
+    border-radius: 50%;
+    background: var(--blue);
+    filter: blur(90px);
+    opacity: 0.07;
+    bottom: -120px; right: -80px;
+    z-index: 1;
+    pointer-events: none;
+  }
+
+  .signal-tag {
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    background: rgba(255,0,85,0.08);
+    border: 1px solid rgba(255,0,85,0.3);
+    border-radius: 6px;
+    padding: 9px 22px;
+    margin-bottom: 52px;
+    position: relative;
+    z-index: 10;
+  }
+  .signal-tag-icon { font-size: 22px; line-height: 1; }
+  .signal-tag-text {
+    font-family: 'Outfit', sans-serif;
+    font-size: 22px;
+    font-weight: 800;
+    letter-spacing: 4px;
+    text-transform: uppercase;
+    color: var(--red);
+  }
+
+  .signal-headline {
+    font-family: 'Outfit', sans-serif;
+    font-size: 104px;
+    font-weight: 900;
+    line-height: 0.93;
+    letter-spacing: -4px;
+    color: var(--text);
+    text-transform: uppercase;
+    position: relative;
+    z-index: 10;
+    margin-bottom: 44px;
+    max-width: 900px;
+  }
+  /* Highlight en la primera línea de cada señal */
+  .signal-headline .hl {
+    background: linear-gradient(135deg, var(--cyan), var(--blue));
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+
+  .signal-divider {
+    width: 64px;
+    height: 3px;
+    background: linear-gradient(90deg, var(--cyan), var(--blue));
+    border-radius: 2px;
+    position: relative;
+    z-index: 10;
+    margin-bottom: 32px;
+  }
+
+  .signal-sub {
+    font-family: 'Inter', sans-serif;
+    font-size: 30px;
+    font-weight: 400;
+    line-height: 1.55;
+    color: var(--muted);
+    max-width: 720px;
+    position: relative;
+    z-index: 10;
+  }
+
+  /* ══════════════════════════════
+     SLIDE 7 — CTA
+  ══════════════════════════════ */
+  .s-cta {
+    background: var(--black);
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    padding: 80px 100px;
+  }
+  .s-cta-orb-1 {
+    position: absolute;
+    width: 600px; height: 600px;
+    border-radius: 50%;
+    background: var(--cyan);
+    filter: blur(120px);
+    opacity: 0.1;
+    top: -200px; left: 50%;
+    transform: translateX(-50%);
+    z-index: 1;
+  }
+  .s-cta-orb-2 {
+    position: absolute;
+    width: 500px; height: 500px;
+    border-radius: 50%;
+    background: var(--blue);
+    filter: blur(100px);
+    opacity: 0.12;
+    bottom: -150px; left: 50%;
+    transform: translateX(-50%);
+    z-index: 1;
+  }
+  .s-cta-grid {
+    position: absolute;
+    inset: 0;
+    background-image:
+      linear-gradient(rgba(0,206,209,0.04) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(0,206,209,0.04) 1px, transparent 1px);
+    background-size: 90px 90px;
+    z-index: 2;
+  }
+  .cta-content { position: relative; z-index: 10; }
+  .cta-pre {
+    font-family: 'Outfit', sans-serif;
+    font-size: 26px;
+    font-weight: 600;
+    letter-spacing: 4px;
+    text-transform: uppercase;
+    color: var(--muted);
+    margin-bottom: 28px;
+  }
+  .cta-headline {
+    font-family: 'Outfit', sans-serif;
+    font-size: 108px;
+    font-weight: 900;
+    letter-spacing: -4px;
+    line-height: 0.9;
+    text-transform: uppercase;
+    color: var(--text);
+    margin-bottom: 12px;
+  }
+  .cta-headline .grad {
+    background: linear-gradient(135deg, var(--cyan), var(--cyan2), var(--blue));
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    filter: drop-shadow(0 0 30px rgba(0,206,209,0.3));
+    display: block;
+  }
+  .cta-sub {
+    font-family: 'Inter', sans-serif;
+    font-size: 30px;
+    font-weight: 400;
+    color: var(--muted);
+    line-height: 1.5;
+    margin-bottom: 64px;
+    margin-top: 20px;
+  }
+  .cta-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 14px;
+    background: linear-gradient(135deg, var(--cyan), var(--blue));
+    border-radius: 100px;
+    padding: 26px 60px;
+    box-shadow: 0 12px 50px -10px rgba(0,206,209,0.5);
+  }
+  .cta-btn-icon { font-size: 34px; line-height: 1; }
+  .cta-btn-text {
+    font-family: 'Outfit', sans-serif;
+    font-size: 40px;
+    font-weight: 900;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    color: #000;
+    line-height: 1;
+  }
+  .cta-handle {
+    margin-top: 40px;
+    font-family: 'Inter', sans-serif;
+    font-size: 22px;
+    font-weight: 500;
+    letter-spacing: 2px;
+    color: rgba(255,255,255,0.18);
+  }
+
+  /* ─── Escala responsive para pantallas menores ─── */
+  @media (max-width: 1180px) {
+    .slide { transform-origin: top center; transform: scale(0.65); margin-bottom: -378px; }
+  }
+  @media (max-width: 750px) {
+    .slide { transform: scale(0.35); margin-bottom: -702px; }
+  }
+</style>
+</head>
+<body>
+
+<p class="page-label">Carrusel — Labs by Santiago · 7 slides · 1080×1080px</p>
+
+<!-- ══ SLIDE 1 — PORTADA ══ -->
+<div class="slide s1">
+  <div class="s1-orb-1"></div>
+  <div class="s1-orb-2"></div>
+  <div class="s1-grid"></div>
+  <div class="bracket bracket-tl"></div>
+  <div class="bracket bracket-tr"></div>
+  <div class="bracket bracket-bl"></div>
+  <div class="bracket bracket-br-deco"></div>
+  <div class="s1-content">
+    <span class="s1-emoji">🚨</span>
+    <div class="s1-eyebrow">Social Media · Alerta</div>
+    <span class="s1-number">5</span>
+    <span class="s1-word-senales">Señales</span>
+    <span class="s1-desc-line">de que tus redes necesitan ayuda urgente</span>
+  </div>
+  <div class="slide-num">1 / 7</div>
+  <div class="logo">
+    <div class="logo-icon">
+      <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <path d="M13 2L3 14h9l-1 8 10-12h-9l1-8z" fill="#00CED1"/>
+      </svg>
+    </div>
+    <div class="logo-text">Labs by Santiago</div>
+  </div>
+</div>
+
+<!-- ══ SLIDE 2 — SEÑAL #1 ══ -->
+<div class="slide s-signal">
+  <div class="s-signal-orb"></div>
+  <div class="ghost-num">1</div>
+  <div class="signal-tag"><span class="signal-tag-icon">❌</span><span class="signal-tag-text">Señal #1</span></div>
+  <div class="signal-headline">
+    <span class="hl">2 semanas</span><br>sin publicar<br>nada
+  </div>
+  <div class="signal-divider"></div>
+  <div class="signal-sub">El algoritmo castiga la inactividad.<br>Si no apareces, no existes.</div>
+  <div class="slide-num">2 / 7</div>
+  <div class="logo"><div class="logo-icon"><svg viewBox="0 0 24 24" fill="none"><path d="M13 2L3 14h9l-1 8 10-12h-9l1-8z" fill="#00CED1"/></svg></div><div class="logo-text">Labs by Santiago</div></div>
+</div>
+
+<!-- ══ SLIDE 3 — SEÑAL #2 ══ -->
+<div class="slide s-signal">
+  <div class="s-signal-orb"></div>
+  <div class="ghost-num">2</div>
+  <div class="signal-tag"><span class="signal-tag-icon">❌</span><span class="signal-tag-text">Señal #2</span></div>
+  <div class="signal-headline">
+    Fotos con<br><span class="hl">mala luz</span><br>sin editar
+  </div>
+  <div class="signal-divider"></div>
+  <div class="signal-sub">La primera impresión lo es todo.<br>Una mala foto = cliente perdido.</div>
+  <div class="slide-num">3 / 7</div>
+  <div class="logo"><div class="logo-icon"><svg viewBox="0 0 24 24" fill="none"><path d="M13 2L3 14h9l-1 8 10-12h-9l1-8z" fill="#00CED1"/></svg></div><div class="logo-text">Labs by Santiago</div></div>
+</div>
+
+<!-- ══ SLIDE 4 — SEÑAL #3 ══ -->
+<div class="slide s-signal">
+  <div class="s-signal-orb"></div>
+  <div class="ghost-num">3</div>
+  <div class="signal-tag"><span class="signal-tag-icon">❌</span><span class="signal-tag-text">Señal #3</span></div>
+  <div class="signal-headline">
+    <span class="hl">No respondes</span><br>comentarios<br>ni DMs
+  </div>
+  <div class="signal-divider"></div>
+  <div class="signal-sub">Cada mensaje sin respuesta<br>es dinero que se va a la competencia.</div>
+  <div class="slide-num">4 / 7</div>
+  <div class="logo"><div class="logo-icon"><svg viewBox="0 0 24 24" fill="none"><path d="M13 2L3 14h9l-1 8 10-12h-9l1-8z" fill="#00CED1"/></svg></div><div class="logo-text">Labs by Santiago</div></div>
+</div>
+
+<!-- ══ SLIDE 5 — SEÑAL #4 ══ -->
+<div class="slide s-signal">
+  <div class="s-signal-orb"></div>
+  <div class="ghost-num">4</div>
+  <div class="signal-tag"><span class="signal-tag-icon">❌</span><span class="signal-tag-text">Señal #4</span></div>
+  <div class="signal-headline">
+    Bio sin<br><span class="hl">qué haces</span><br>ni dónde
+  </div>
+  <div class="signal-divider"></div>
+  <div class="signal-sub">Si en 3 segundos no entienden qué haces,<br>ya se fueron.</div>
+  <div class="slide-num">5 / 7</div>
+  <div class="logo"><div class="logo-icon"><svg viewBox="0 0 24 24" fill="none"><path d="M13 2L3 14h9l-1 8 10-12h-9l1-8z" fill="#00CED1"/></svg></div><div class="logo-text">Labs by Santiago</div></div>
+</div>
+
+<!-- ══ SLIDE 6 — SEÑAL #5 ══ -->
+<div class="slide s-signal">
+  <div class="s-signal-orb"></div>
+  <div class="ghost-num">5</div>
+  <div class="signal-tag"><span class="signal-tag-icon">❌</span><span class="signal-tag-text">Señal #5</span></div>
+  <div class="signal-headline">
+    Publicas<br>cuando<br><span class="hl">te acuerdas</span>
+  </div>
+  <div class="signal-divider"></div>
+  <div class="signal-sub">Sin estrategia no hay crecimiento.<br>Solo suerte — y la suerte no es plan.</div>
+  <div class="slide-num">6 / 7</div>
+  <div class="logo"><div class="logo-icon"><svg viewBox="0 0 24 24" fill="none"><path d="M13 2L3 14h9l-1 8 10-12h-9l1-8z" fill="#00CED1"/></svg></div><div class="logo-text">Labs by Santiago</div></div>
+</div>
+
+<!-- ══ SLIDE 7 — CTA ══ -->
+<div class="slide s-cta">
+  <div class="s-cta-orb-1"></div>
+  <div class="s-cta-orb-2"></div>
+  <div class="s-cta-grid"></div>
+  <div class="bracket bracket-tl"></div>
+  <div class="bracket bracket-tr"></div>
+  <div class="bracket bracket-bl"></div>
+  <div class="bracket bracket-br-deco"></div>
+  <div class="cta-content">
+    <div class="cta-pre">¿Más de 2 señales?</div>
+    <div class="cta-headline">
+      Lo resolvemos
+      <span class="grad">juntos.</span>
+    </div>
+    <div class="cta-sub">Escríbeme y armamos tu estrategia<br>desde cero.</div>
+    <div class="cta-btn">
+      <span class="cta-btn-icon">📩</span>
+      <span class="cta-btn-text">DM directo</span>
+    </div>
+    <div class="cta-handle">@labsbysantiago</div>
+  </div>
+  <div class="slide-num">7 / 7</div>
+  <div class="logo"><div class="logo-icon"><svg viewBox="0 0 24 24" fill="none"><path d="M13 2L3 14h9l-1 8 10-12h-9l1-8z" fill="#00CED1"/></svg></div><div class="logo-text">Labs by Santiago</div></div>
+</div>
+
+</body>
+</html>
