@@ -350,7 +350,7 @@
     .card::before {
       content: ''; position: absolute; inset: 0; border-radius: 24px;
       background: radial-gradient(circle at var(--mx,50%) var(--my,50%), rgba(0,206,209,.08) 0%, transparent 65%);
-      opacity: 0; transition: opacity .4s;
+      opacity: 0; transition: opacity .4s; pointer-events: none;
     }
     .card:hover::before { opacity: 1; }
     .card:hover { border-color: rgba(0,206,209,.3); box-shadow: 0 0 40px rgba(0,206,209,.08); }
@@ -554,9 +554,10 @@
     .proj-tags { display: flex; gap: 8px; flex-wrap: wrap; margin-top: 20px; }
     .proj-tag { font-size: .74rem; color: var(--muted); background: rgba(255,255,255,.04); border: 1px solid var(--border); padding: 5px 11px; border-radius: 8px; }
     .proj-link {
+      position: relative; z-index: 2;
       margin-top: auto; padding-top: 24px; display: inline-flex; align-items: center; gap: 8px;
       color: var(--cyan); text-decoration: none; font-weight: 700; font-family: var(--heading); font-size: .95rem; cursor: none;
-      transition: gap .3s;
+      transition: gap .3s; align-self: flex-start;
     }
     .proj-link:hover { gap: 13px; }
     .proj-link.disabled { color: var(--muted); pointer-events: none; }
