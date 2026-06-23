@@ -3,8 +3,28 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Labs by Santiago | Agencia de Inteligencia Artificial</title>
-  <meta name="description" content="Automatización y crecimiento con Inteligencia Artificial. Atención directa y personalizada con Santiago en Labs by Santiago." />
+  <title>Santiago Pérez | Labs by Santiago — Productos y Automatización con IA</title>
+  <meta name="description" content="Santiago Pérez: construyo productos de software con IA (Clockio, PixiesLabs) y ayudo a negocios de Denver a automatizar y crecer. Portafolio + agencia." />
+  <meta name="author" content="Santiago Pérez" />
+  <link rel="canonical" href="https://labsbysantiago.com/" />
+  <meta name="theme-color" content="#05070f" />
+
+  <!-- Open Graph (WhatsApp, Facebook, IG) -->
+  <meta property="og:type" content="website" />
+  <meta property="og:url" content="https://labsbysantiago.com/" />
+  <meta property="og:title" content="Santiago Pérez | Labs by Santiago — Software y Automatización con IA" />
+  <meta property="og:description" content="Construyo productos de software con IA (Clockio, PixiesLabs) y automatizo los procesos de tu negocio en Denver." />
+  <meta property="og:image" content="https://labsbysantiago.com/og-image.png" />
+  <meta property="og:image:width" content="1200" />
+  <meta property="og:image:height" content="630" />
+  <meta property="og:locale" content="es_ES" />
+
+  <!-- Twitter / X -->
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="Santiago Pérez | Labs by Santiago" />
+  <meta name="twitter:description" content="Software con IA y automatización de procesos para negocios de Denver." />
+  <meta name="twitter:image" content="https://labsbysantiago.com/og-image.png" />
+
   <link rel="icon" type="image/svg+xml" href="favicon.svg" />
   <link rel="apple-touch-icon" href="favicon.svg" />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
@@ -175,6 +195,12 @@
     }
     .btn-ig:hover { box-shadow: 0 14px 40px -8px rgba(220,39,67,.8); filter: brightness(1.1); }
 
+    .btn-wa {
+      background: linear-gradient(135deg,#25D366,#128C7E);
+      color: #fff; box-shadow: 0 8px 30px -8px rgba(37,211,102,.6);
+    }
+    .btn-wa:hover { box-shadow: 0 14px 40px -8px rgba(37,211,102,.85); filter: brightness(1.05); }
+
     /* ── Navbar ── */
     .navbar {
       position: fixed; top: 20px; left: 50%; transform: translateX(-50%);
@@ -228,19 +254,32 @@
       box-shadow: 0 4px 16px rgba(220,39,67,.4);
     }
     .nav-ig-btn:hover { transform: scale(1.12) translateY(-2px); }
+    .nav-wa-btn {
+      width: 42px; height: 42px; border-radius: 50%; display: flex;
+      align-items: center; justify-content: center; cursor: none;
+      background: linear-gradient(135deg,#25D366,#128C7E);
+      color: #fff; text-decoration: none; transition: transform .3s, box-shadow .3s;
+      box-shadow: 0 4px 16px rgba(37,211,102,.4);
+    }
+    .nav-wa-btn:hover { transform: scale(1.12) translateY(-2px); }
 
     /* ── Hero ── */
     .hero {
       min-height: 100vh; display: flex; align-items: center;
-      justify-content: center; text-align: center; padding-top: 140px;
-      position: relative;
+      padding-top: 130px; position: relative;
     }
 
-    .hero-content { max-width: 920px; position: relative; z-index: 2; }
+    .hero-content { max-width: 1240px; width: 100%; position: relative; z-index: 2; }
+
+    .hero-grid {
+      display: grid; grid-template-columns: 1.1fr .9fr;
+      gap: 64px; align-items: center;
+    }
+    .hero-left { text-align: left; }
 
     .hero-badges {
-      display: flex; gap: 12px; justify-content: center;
-      flex-wrap: wrap; margin-bottom: 36px;
+      display: flex; gap: 12px; justify-content: flex-start;
+      flex-wrap: wrap; margin-bottom: 28px;
     }
     .badge {
       display: inline-flex; align-items: center; gap: 8px;
@@ -252,36 +291,32 @@
     .badge:hover { background: rgba(0,206,209,.15); transform: translateY(-2px); }
 
     .hero h1 {
-      font-size: clamp(2.8rem, 7vw, 5.5rem); font-weight: 900;
-      letter-spacing: -.04em; line-height: 1.08; margin-bottom: 28px;
+      font-size: clamp(2.5rem, 4.6vw, 4.2rem); font-weight: 900;
+      letter-spacing: -.04em; line-height: 1.05; margin-bottom: 24px;
     }
 
     .hero-sub {
-      font-size: clamp(1rem, 1.8vw, 1.2rem); color: var(--muted);
-      max-width: 620px; margin: 0 auto 48px; line-height: 1.75;
+      font-size: clamp(1rem, 1.5vw, 1.18rem); color: var(--muted);
+      max-width: 540px; margin: 0 0 40px; line-height: 1.7;
     }
 
-    .hero-actions { display: flex; gap: 16px; justify-content: center; flex-wrap: wrap; }
+    .hero-actions { display: flex; gap: 16px; justify-content: flex-start; flex-wrap: wrap; }
 
-    /* Stats strip */
-    .stats-strip {
-      display: flex; gap: 0; justify-content: center;
-      margin-top: 80px; border: 1px solid var(--border);
-      border-radius: 20px; overflow: hidden;
-      background: rgba(255,255,255,.03); backdrop-filter: blur(12px);
-    }
+    /* Stats column (hero right) */
+    .stats-col { display: flex; flex-direction: column; gap: 14px; }
     .stat {
-      flex: 1; padding: 28px 32px; text-align: center;
-      border-right: 1px solid var(--border); transition: background .3s;
+      display: flex; align-items: center; gap: 18px;
+      padding: 22px 26px; border: 1px solid var(--border); border-radius: 18px;
+      background: rgba(255,255,255,.03); backdrop-filter: blur(12px);
+      transition: border-color .3s, transform .3s, background .3s;
     }
-    .stat:last-child { border-right: none; }
-    .stat:hover { background: rgba(0,206,209,.05); }
+    .stat:hover { border-color: var(--border-glow); transform: translateX(5px); background: rgba(0,206,209,.05); }
     .stat-number {
-      font-family: var(--heading); font-size: 2.4rem; font-weight: 900;
-      color: var(--cyan); letter-spacing: -.03em; line-height: 1;
+      font-family: var(--heading); font-size: 2.2rem; font-weight: 900;
+      color: var(--cyan); letter-spacing: -.03em; line-height: 1; min-width: 86px;
       filter: drop-shadow(0 0 12px rgba(0,206,209,.5));
     }
-    .stat-label { font-size: .8rem; color: var(--muted); margin-top: 6px; font-weight: 500; }
+    .stat-label { font-size: .9rem; color: var(--muted); font-weight: 500; }
 
     /* Scroll indicator */
     .scroll-indicator {
@@ -486,10 +521,59 @@
       animation: pulse 2.5s infinite; pointer-events: none;
     }
     .float-ig:hover { transform: scale(1.12) translateY(-4px); box-shadow: 0 14px 40px rgba(220,39,67,.7); }
+
+    .float-wa {
+      position: fixed; bottom: 96px; right: 28px;
+      width: 58px; height: 58px; border-radius: 50%; z-index: 999;
+      display: flex; align-items: center; justify-content: center;
+      background: linear-gradient(135deg,#25D366,#128C7E);
+      color: #fff; text-decoration: none; cursor: none;
+      box-shadow: 0 8px 30px rgba(37,211,102,.5);
+      transition: transform .3s, box-shadow .3s;
+    }
+    .float-wa:hover { transform: scale(1.12) translateY(-4px); box-shadow: 0 14px 40px rgba(37,211,102,.75); }
     @keyframes pulse {
       0%, 100% { transform: scale(1); opacity: .6; }
       50% { transform: scale(1.4); opacity: 0; }
     }
+
+    /* ── Projects ── */
+    .proj-grid { display: grid; grid-template-columns: repeat(2,1fr); gap: 20px; }
+    .proj-card { display: flex; flex-direction: column; }
+    .proj-top { display: flex; align-items: center; justify-content: space-between; margin-bottom: 22px; }
+    .status-pill {
+      display: inline-flex; align-items: center; gap: 7px;
+      font-family: var(--heading); font-size: .7rem; font-weight: 800;
+      letter-spacing: .1em; text-transform: uppercase; padding: 6px 13px; border-radius: 100px;
+    }
+    .status-live  { background: rgba(0,206,209,.12); color: var(--cyan); border: 1px solid rgba(0,206,209,.3); }
+    .status-build { background: rgba(255,0,85,.1);  color: var(--red);  border: 1px solid rgba(255,0,85,.28); }
+    .status-pill .dot { width: 7px; height: 7px; border-radius: 50%; background: currentColor; box-shadow: 0 0 10px currentColor; animation: blink 1.6s infinite; }
+    @keyframes blink { 0%,100% { opacity: 1; } 50% { opacity: .25; } }
+    .proj-card h3 { font-size: 1.5rem; font-weight: 800; margin-bottom: 12px; }
+    .proj-tags { display: flex; gap: 8px; flex-wrap: wrap; margin-top: 20px; }
+    .proj-tag { font-size: .74rem; color: var(--muted); background: rgba(255,255,255,.04); border: 1px solid var(--border); padding: 5px 11px; border-radius: 8px; }
+    .proj-link {
+      margin-top: auto; padding-top: 24px; display: inline-flex; align-items: center; gap: 8px;
+      color: var(--cyan); text-decoration: none; font-weight: 700; font-family: var(--heading); font-size: .95rem; cursor: none;
+      transition: gap .3s;
+    }
+    .proj-link:hover { gap: 13px; }
+    .proj-link.disabled { color: var(--muted); pointer-events: none; }
+
+    /* ── Roadmap ── */
+    .roadmap { position: relative; max-width: 720px; margin: 0 auto; }
+    .road-item { position: relative; padding: 0 0 46px 40px; border-left: 2px solid var(--border); margin-left: 8px; }
+    .road-item:last-child { border-left-color: transparent; padding-bottom: 0; }
+    .road-dot { position: absolute; left: -9px; top: 2px; width: 16px; height: 16px; border-radius: 50%; background: var(--bg); border: 2px solid var(--muted); }
+    .road-item.done .road-dot { border-color: var(--cyan); background: var(--cyan); box-shadow: 0 0 16px rgba(0,206,209,.6); }
+    .road-item.now  .road-dot { border-color: var(--red); box-shadow: 0 0 16px rgba(255,0,85,.6); }
+    .road-phase { font-family: var(--heading); font-size: .7rem; font-weight: 800; letter-spacing: .14em; text-transform: uppercase; color: var(--muted); margin-bottom: 8px; }
+    .road-item.done .road-phase { color: var(--cyan); }
+    .road-item.now  .road-phase { color: var(--red); }
+    .road-item h4 { font-size: 1.15rem; font-weight: 700; margin-bottom: 8px; }
+    .road-item p  { font-size: .92rem; color: var(--muted); line-height: 1.6; }
+    @media (max-width: 1024px) { .proj-grid { grid-template-columns: 1fr; } }
 
     /* ── Reveal helpers ── */
     .reveal { opacity: 0; }
@@ -506,6 +590,10 @@
       .nav-links { display: none; }
       section { padding: 70px 0; }
       .hero { padding-top: 110px; }
+      .hero-grid { grid-template-columns: 1fr; gap: 40px; }
+      .hero-left { text-align: center; }
+      .hero-badges { justify-content: center; }
+      .hero-actions { justify-content: center; }
       .hero h1 { font-size: 2.4rem; letter-spacing: -.03em; }
       .hero-sub { font-size: .95rem; }
       .hero-badges { gap: 8px; }
@@ -519,10 +607,8 @@
       .process-line-bg, .process-line-fill { display: none; }
       .process-step { padding: 0 16px; }
       .step-num { width: 72px; height: 72px; font-size: 1.6rem; }
-      .stats-strip { flex-direction: column; border-radius: 16px; }
-      .stat { border-right: none; border-bottom: 1px solid var(--border); padding: 20px; }
-      .stat:last-child { border-bottom: none; }
-      .stat-number { font-size: 2rem; }
+      .stat { padding: 18px 20px; }
+      .stat-number { font-size: 1.9rem; min-width: 72px; }
       .cta-box { padding: 50px 20px; border-radius: 20px; }
       .cta-box h2 { font-size: 1.8rem; }
       .cta-box p { font-size: 1rem; }
@@ -530,7 +616,7 @@
       .section-title { font-size: 1.9rem; }
       #cursor, #cursor-ring { display: none; }
       body { cursor: auto; }
-      .btn, .nav-link, .lang-btn, .nav-ig-btn, .float-ig { cursor: pointer; }
+      .btn, .nav-link, .lang-btn, .nav-ig-btn, .nav-wa-btn, .float-ig, .float-wa { cursor: pointer; }
       .scroll-indicator { display: none; }
       footer { padding: 40px 0 30px; }
     }
@@ -563,12 +649,15 @@
         Labs<span class="gradient-text"> by Santiago</span>
       </a>
       <div class="nav-links">
+        <a href="#proyectos" class="nav-link">Proyectos</a>
         <a href="#servicios" class="nav-link">Servicios</a>
-        <a href="#nosotros" class="nav-link">Por qué Elegirnos</a>
-        <a href="#proceso" class="nav-link">Metodología</a>
+        <a href="#nosotros" class="nav-link">Por qué yo</a>
+        <a href="#proceso" class="nav-link">Proceso</a>
       </div>
       <div class="nav-right">
-        <a href="index3-en.html" class="lang-btn">EN</a>
+        <a href="https://wa.me/17202172431" class="nav-wa-btn" target="_blank" rel="noopener" title="WhatsApp">
+          <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M.057 24l1.687-6.163a11.867 11.867 0 0 1-1.587-5.946C.16 5.335 5.495 0 12.05 0a11.82 11.82 0 0 1 8.413 3.488 11.82 11.82 0 0 1 3.48 8.414c-.003 6.557-5.338 11.892-11.893 11.892a11.9 11.9 0 0 1-5.688-1.448L.057 24zm6.597-3.807c1.676.995 3.276 1.591 5.392 1.592 5.448 0 9.886-4.434 9.889-9.885.002-5.462-4.415-9.89-9.881-9.892-5.452 0-9.887 4.434-9.889 9.884a9.82 9.82 0 0 0 1.523 5.26l-.999 3.648 3.965-1.607zm11.387-5.464c-.074-.124-.272-.198-.57-.347-.297-.149-1.758-.868-2.031-.967-.272-.099-.47-.149-.669.149-.198.297-.768.967-.941 1.165-.173.198-.347.223-.644.074-.297-.149-1.255-.462-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.297-.347.446-.521.151-.172.2-.296.3-.495.099-.198.05-.372-.025-.521-.075-.148-.669-1.611-.916-2.206-.242-.579-.487-.501-.669-.51l-.57-.01c-.198 0-.52.074-.792.372s-1.04 1.016-1.04 2.479 1.065 2.876 1.213 3.074c.149.198 2.095 3.2 5.076 4.487.709.306 1.263.489 1.694.626.712.226 1.36.194 1.872.118.571-.085 1.758-.719 2.006-1.413.248-.695.248-1.29.173-1.414z"/></svg>
+        </a>
         <a href="https://instagram.com/labsbysantiago" class="nav-ig-btn" target="_blank" title="Instagram">
           <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"></rect><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"></path><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"></line></svg>
         </a>
@@ -579,46 +668,50 @@
   <!-- Hero -->
   <section class="hero">
     <div class="container hero-content">
-      <div class="hero-badges reveal" id="hero-badges">
-        <div class="badge"><i data-lucide="zap" style="width:14px;height:14px;"></i> Resultados en 30 días</div>
-        <div class="badge"><i data-lucide="user-check" style="width:14px;height:14px;"></i> Consultoría 1 a 1</div>
-      </div>
+      <div class="hero-grid">
+        <div class="hero-left">
+          <div class="hero-badges reveal" id="hero-badges">
+            <div class="badge"><i data-lucide="map-pin" style="width:14px;height:14px;"></i> Denver, Colorado</div>
+            <div class="badge"><i data-lucide="code-2" style="width:14px;height:14px;"></i> Software + IA</div>
+          </div>
 
-      <h1 class="reveal" id="hero-h1">
-        Automatiza y escala tu negocio<br>usando <span class="gradient-text">Inteligencia Artificial</span>
-      </h1>
+          <h1 class="reveal" id="hero-h1">
+            Soy Santiago. Desarrollo <span class="gradient-text">software con IA</span> y automatizo tu negocio.
+          </h1>
 
-      <p class="hero-sub reveal" id="hero-sub">
-        Ayudamos a dueños de negocios a recuperar su tiempo, automatizar procesos y ventas para crecer de forma acelerada sin necesidad de contratar más personal.
-      </p>
+          <p class="hero-sub reveal" id="hero-sub">
+            Creo productos de software reales con inteligencia artificial — y con esa misma tecnología automatizo los procesos de tu empresa para que crezca sin sumar más personal.
+          </p>
 
-      <div class="hero-actions reveal" id="hero-actions">
-        <a href="https://instagram.com/labsbysantiago" class="btn btn-primary" target="_blank">
-          <i data-lucide="calendar" style="width:18px;height:18px;"></i>
-          Agenda una llamada gratis
-        </a>
-        <a href="#servicios" class="btn btn-ghost">
-          Ver nuestros servicios
-          <i data-lucide="arrow-down" style="width:16px;height:16px;"></i>
-        </a>
-      </div>
-
-      <div class="stats-strip reveal" id="hero-stats">
-        <div class="stat">
-          <div class="stat-number" data-count="30" data-suffix=" días">0</div>
-          <div class="stat-label">Primeros resultados</div>
+          <div class="hero-actions reveal" id="hero-actions">
+            <a href="#proyectos" class="btn btn-primary">
+              <i data-lucide="layout-grid" style="width:18px;height:18px;"></i>
+              Ver mis proyectos
+            </a>
+            <a href="#servicios" class="btn btn-ghost">
+              Servicios de agencia
+              <i data-lucide="arrow-down" style="width:16px;height:16px;"></i>
+            </a>
+          </div>
         </div>
-        <div class="stat">
-          <div class="stat-number" data-count="24" data-suffix="/7">0</div>
-          <div class="stat-label">Automatización activa</div>
-        </div>
-        <div class="stat">
-          <div class="stat-number" data-count="100" data-suffix="%">0</div>
-          <div class="stat-label">Atención personalizada</div>
-        </div>
-        <div class="stat">
-          <div class="stat-number" data-count="5" data-suffix="x">0</div>
-          <div class="stat-label">ROI promedio</div>
+
+        <div class="stats-col reveal" id="hero-stats">
+          <div class="stat">
+            <div class="stat-number" data-count="2" data-suffix="">0</div>
+            <div class="stat-label">Productos propios en vivo</div>
+          </div>
+          <div class="stat">
+            <div class="stat-number" data-count="8" data-suffix="+">0</div>
+            <div class="stat-label">Negocios atendidos</div>
+          </div>
+          <div class="stat">
+            <div class="stat-number" data-count="24" data-suffix="/7">0</div>
+            <div class="stat-label">Automatización activa</div>
+          </div>
+          <div class="stat">
+            <div class="stat-number" data-count="100" data-suffix="%">0</div>
+            <div class="stat-label">Trato directo</div>
+          </div>
         </div>
       </div>
     </div>
@@ -629,13 +722,67 @@
     </div>
   </section>
 
+  <!-- Projects + Roadmap -->
+  <section id="proyectos">
+    <div class="container">
+      <div class="reveal" style="text-align:center; margin-bottom:64px;">
+        <div class="section-label">Portafolio</div>
+        <h2 class="section-title">Proyectos que <span class="gradient-text">construyo</span></h2>
+        <p class="section-sub" style="margin:0 auto;">No solo asesoro: desarrollo productos de software reales con IA. Estos son los que están en marcha.</p>
+      </div>
+
+      <div class="proj-grid">
+
+        <!-- Clockio -->
+        <div class="card proj-card reveal" data-tilt data-tilt-max="5" data-tilt-speed="400">
+          <div class="proj-top">
+            <div class="card-icon"><i data-lucide="clock" style="width:22px;height:22px;"></i></div>
+            <span class="status-pill status-live"><span class="dot"></span> En vivo</span>
+          </div>
+          <h3>Clockio</h3>
+          <p>App de fichaje con GPS para equipos. Control de horas, geolocalización y reportes automáticos — pensada para negocios con empleados de campo.</p>
+          <div class="proj-tags">
+            <span class="proj-tag">PWA</span>
+            <span class="proj-tag">GPS</span>
+            <span class="proj-tag">Supabase</span>
+            <span class="proj-tag">IA</span>
+          </div>
+          <a href="https://clockioapp.com/" target="_blank" rel="noopener" class="proj-link">
+            Visitar clockioapp.com <i data-lucide="arrow-up-right" style="width:18px;height:18px;"></i>
+          </a>
+        </div>
+
+        <!-- PixiesLabs -->
+        <div class="card proj-card reveal" data-tilt data-tilt-max="5" data-tilt-speed="400">
+          <div class="proj-top">
+            <div class="card-icon" style="background:rgba(255,0,85,.08);border-color:rgba(255,0,85,.2);color:var(--red);"><i data-lucide="mail" style="width:22px;height:22px;"></i></div>
+            <span class="status-pill status-build"><span class="dot"></span> En construcción</span>
+          </div>
+          <h3>PixiesLabs</h3>
+          <p>Asistente de email con IA para property managers. Lee los correos de inquilinos, redacta respuestas con Claude y las registra en un dashboard.</p>
+          <div class="proj-tags">
+            <span class="proj-tag">n8n</span>
+            <span class="proj-tag">Claude</span>
+            <span class="proj-tag">Gmail API</span>
+            <span class="proj-tag">React</span>
+          </div>
+          <span class="proj-link disabled">
+            Próximamente <i data-lucide="lock" style="width:16px;height:16px;"></i>
+          </span>
+        </div>
+
+      </div>
+
+    </div>
+  </section>
+
   <!-- AI Agents Prominent Section -->
   <section id="agentes-ia" style="padding-top: 120px; padding-bottom: 60px;">
     <div class="container">
       <div class="reveal" style="text-align:center; margin-bottom: 50px;">
-        <div class="section-label" style="color: var(--red);">El Futuro de tu Empresa</div>
-        <h2 class="section-title" style="font-size: clamp(2.5rem, 5vw, 4rem);">Agentes de <span class="gradient-text" style="background: linear-gradient(135deg, var(--red) 0%, #FF6B35 100%); -webkit-background-clip: text; background-clip: text;">Inteligencia Artificial</span></h2>
-        <p class="section-sub" style="margin:0 auto;">Contrata "Empleados Virtuales" que no duermen, no piden vacaciones y ejecutan tareas complejas las 24 horas del día.</p>
+        <div class="section-label" style="color: var(--red);">Servicio Estrella</div>
+        <h2 class="section-title" style="font-size: clamp(2.5rem, 5vw, 4rem);">Automatiza los <span class="gradient-text" style="background: linear-gradient(135deg, var(--red) 0%, #FF6B35 100%); -webkit-background-clip: text; background-clip: text;">procesos de tu empresa</span></h2>
+        <p class="section-sub" style="margin:0 auto;">Identifico las tareas repetitivas que te roban tiempo y las convierto en sistemas que trabajan solos, 24 horas, sin errores ni sueldos extra.</p>
       </div>
 
       <div class="card card-premium reveal" data-tilt data-tilt-max="3" data-tilt-speed="400" style="padding: 60px; text-align: center; max-width: 1000px; margin: 0 auto; border-color: rgba(255,0,85,0.4); box-shadow: 0 0 60px rgba(255,0,85,0.15), inset 0 0 30px rgba(255,0,85,0.05); background: linear-gradient(135deg, rgba(255,0,85,.05) 0%, rgba(5,7,15,1) 50%, rgba(0,136,255,.05) 100%);">
@@ -646,31 +793,31 @@
         
         <div style="display: flex; justify-content: center; gap: 40px; margin-bottom: 40px; flex-wrap: wrap;">
           <div style="text-align: center; max-width: 200px;">
-            <div class="card-icon" style="margin: 0 auto 16px; background: rgba(255,0,85,.1); border-color: rgba(255,0,85,.3); color: var(--red);"><i data-lucide="brain" style="width:28px;height:28px;"></i></div>
-            <h4 style="font-size: 1.1rem; margin-bottom: 8px;">Toma de Decisiones</h4>
-            <p style="font-size: 0.85rem; color: var(--muted);">Analizan datos en tiempo real y toman decisiones comerciales según tus reglas.</p>
+            <div class="card-icon" style="margin: 0 auto 16px; background: rgba(255,0,85,.1); border-color: rgba(255,0,85,.3); color: var(--red);"><i data-lucide="repeat" style="width:28px;height:28px;"></i></div>
+            <h4 style="font-size: 1.1rem; margin-bottom: 8px;">Tareas repetitivas</h4>
+            <p style="font-size: 0.85rem; color: var(--muted);">Lo que haces a mano cada día —reportes, seguimientos, registros— pasa a ser automático.</p>
           </div>
           <div style="text-align: center; max-width: 200px;">
             <div class="card-icon" style="margin: 0 auto 16px; background: rgba(0,206,209,.1); border-color: rgba(0,206,209,.3); color: var(--cyan);"><i data-lucide="workflow" style="width:28px;height:28px;"></i></div>
-            <h4 style="font-size: 1.1rem; margin-bottom: 8px;">Ejecución Autónoma</h4>
-            <p style="font-size: 0.85rem; color: var(--muted);">Conectamos agentes a tu CRM, correos y sistemas para que trabajen por ti.</p>
+            <h4 style="font-size: 1.1rem; margin-bottom: 8px;">Conectado a tus sistemas</h4>
+            <p style="font-size: 0.85rem; color: var(--muted);">Integro tu CRM, correos, hojas de cálculo y apps para que la información fluya sola.</p>
           </div>
           <div style="text-align: center; max-width: 200px;">
-            <div class="card-icon" style="margin: 0 auto 16px; background: rgba(0,136,255,.1); border-color: rgba(0,136,255,.3); color: var(--blue);"><i data-lucide="users" style="width:28px;height:28px;"></i></div>
-            <h4 style="font-size: 1.1rem; margin-bottom: 8px;">Soporte Nivel 3</h4>
-            <p style="font-size: 0.85rem; color: var(--muted);">Atención al cliente con entendimiento de contexto avanzado y memoria a largo plazo.</p>
+            <div class="card-icon" style="margin: 0 auto 16px; background: rgba(0,136,255,.1); border-color: rgba(0,136,255,.3); color: var(--blue);"><i data-lucide="clock" style="width:28px;height:28px;"></i></div>
+            <h4 style="font-size: 1.1rem; margin-bottom: 8px;">Funciona 24/7</h4>
+            <p style="font-size: 0.85rem; color: var(--muted);">Los procesos corren día y noche sin que estés encima ni tengas que contratar a nadie.</p>
           </div>
         </div>
         
         <p style="font-size: 1.2rem; max-width: 700px; margin: 0 auto 40px; line-height: 1.8; color: #E2E8F0;">
-          Imagina tener un agente diseñado para <strong>responder mensajes y agendar llamadas de ventas o citas automáticamente por ti</strong>. Nuestros Agentes Autónomos de IA califican leads, gestionan tu calendario y cierran citas las 24 horas del día, para que tú no tengas que preocuparte por nada más que asistir a la llamada.
+          Imagina que <strong>todo lo manual de tu negocio se hace solo</strong>: responder mensajes, agendar citas, calificar clientes, generar reportes y mover datos entre tus apps. Yo mapeo tu operación y construyo el sistema que lo automatiza de punta a punta.
           <br><br>
-          ¿Quieres ver cómo funciona en tiempo real? <strong>Envíame un mensaje por Instagram y mi propio agente de IA te atenderá al instante.</strong>
+          ¿Quieres ver un ejemplo en vivo? <strong>Escríbeme por Instagram y mi propio agente de IA te atenderá al instante.</strong>
         </p>
 
         <a href="https://instagram.com/labsbysantiago" class="btn btn-primary" target="_blank" style="background: linear-gradient(135deg, var(--red), #FF3366); box-shadow: 0 8px 30px -8px rgba(255,0,85,.6); padding: 18px 36px; border-radius: 50px;">
           <i data-lucide="instagram" style="width:20px;height:20px; color: white;"></i>
-          <span style="color: white; font-weight: 800; font-size: 1.1rem;">Prueba mi agente por Instagram DM</span>
+          <span style="color: white; font-weight: 800; font-size: 1.1rem;">Hablar con Santiago por Instagram</span>
         </a>
       </div>
     </div>
@@ -707,6 +854,20 @@
           <p>Conectamos agentes autónomos a tus canales (WhatsApp, IG, Correo) para responder, calificar leads y agendar reuniones automáticas 24/7.</p>
         </div>
 
+        <div class="card reveal" data-tilt data-tilt-max="8" data-tilt-speed="400">
+          <div class="card-icon" style="background:rgba(0,136,255,.08);border-color:rgba(0,136,255,.2);color:var(--blue);">
+            <i data-lucide="settings-2" style="width:22px;height:22px;"></i>
+          </div>
+          <h3>Automatizaciones internas de tu negocio</h3>
+          <p>¿Tareas internas que te quitan horas? De eso me encargo yo. Mapeo tu operación y monto los sistemas que la hacen funcionar sola, sin que muevas un dedo.</p>
+        </div>
+
+        <div class="card span-2 reveal" data-tilt data-tilt-max="6" data-tilt-speed="400" data-tilt-glare data-tilt-max-glare="0.1">
+          <div class="card-icon"><i data-lucide="git-merge" style="width:22px;height:22px;"></i></div>
+          <h3>Me sumo a tu proyecto</h3>
+          <p>¿Ya estás construyendo algo —un software, una app, una idea— y necesitas manos con IA? Me integro a tu equipo para desarrollarlo contigo y llevarlo a producción.</p>
+        </div>
+
         <div class="card card-premium span-3 reveal" data-tilt data-tilt-max="5" data-tilt-speed="400">
           <div class="premium-pill">
             <i data-lucide="sparkles" style="width:12px;height:12px;"></i>
@@ -735,7 +896,7 @@
           <div class="card-icon" style="background:rgba(255,0,85,.08);border-color:rgba(255,0,85,.2);color:var(--red);">
             <i data-lucide="user-check" style="width:22px;height:22px;"></i>
           </div>
-          <h3>Trato Boutique y Directo</h3>
+          <h3>Trato Directo y Profesional</h3>
           <p>Sin agencias burocráticas ni intermediarios. Santiago trabaja directamente en tu proyecto para resultados precisos.</p>
         </div>
         <div class="card reveal" data-tilt data-tilt-max="6">
@@ -799,9 +960,13 @@
           <h2>¿Listo para transformar<br>el futuro de tu negocio?</h2>
           <p>Deja de perder tiempo en procesos manuales e invierte hoy en tecnología que liderará tu mercado las 24 horas.</p>
           <div style="display:flex; gap:16px; justify-content:center; flex-wrap:wrap;">
-            <a href="https://instagram.com/labsbysantiago" class="btn btn-ig" target="_blank" style="font-size:1.1rem; padding:18px 42px;">
+            <a href="https://wa.me/17202172431" class="btn btn-wa" target="_blank" rel="noopener" style="font-size:1.1rem; padding:18px 42px;">
+              <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 24 24" fill="currentColor"><path d="M.057 24l1.687-6.163a11.867 11.867 0 0 1-1.587-5.946C.16 5.335 5.495 0 12.05 0a11.82 11.82 0 0 1 8.413 3.488 11.82 11.82 0 0 1 3.48 8.414c-.003 6.557-5.338 11.892-11.893 11.892a11.9 11.9 0 0 1-5.688-1.448L.057 24zm6.597-3.807c1.676.995 3.276 1.591 5.392 1.592 5.448 0 9.886-4.434 9.889-9.885.002-5.462-4.415-9.89-9.881-9.892-5.452 0-9.887 4.434-9.889 9.884a9.82 9.82 0 0 0 1.523 5.26l-.999 3.648 3.965-1.607zm11.387-5.464c-.074-.124-.272-.198-.57-.347-.297-.149-1.758-.868-2.031-.967-.272-.099-.47-.149-.669.149-.198.297-.768.967-.941 1.165-.173.198-.347.223-.644.074-.297-.149-1.255-.462-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.297-.347.446-.521.151-.172.2-.296.3-.495.099-.198.05-.372-.025-.521-.075-.148-.669-1.611-.916-2.206-.242-.579-.487-.501-.669-.51l-.57-.01c-.198 0-.52.074-.792.372s-1.04 1.016-1.04 2.479 1.065 2.876 1.213 3.074c.149.198 2.095 3.2 5.076 4.487.709.306 1.263.489 1.694.626.712.226 1.36.194 1.872.118.571-.085 1.758-.719 2.006-1.413.248-.695.248-1.29.173-1.414z"/></svg>
+              WhatsApp: 720 217 2431
+            </a>
+            <a href="https://instagram.com/labsbysantiago" class="btn btn-ig" target="_blank" rel="noopener" style="font-size:1.1rem; padding:18px 42px;">
               <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"></rect><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"></path><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"></line></svg>
-              Hablar con Santiago Ahora
+              Instagram @labsbysantiago
             </a>
             <a href="mailto:labsbysantiago@gmail.com" class="btn btn-ghost" style="font-size:1.1rem; padding:18px 42px;">
               <i data-lucide="mail" style="width:20px;height:20px;"></i>
@@ -827,6 +992,11 @@
       <p style="font-size:.8rem; color:#3a3f52;">© 2026 Labs by Santiago. Todos los derechos reservados.</p>
     </div>
   </footer>
+
+  <!-- Floating WhatsApp -->
+  <a href="https://wa.me/17202172431" class="float-wa" target="_blank" rel="noopener" aria-label="WhatsApp">
+    <svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 24 24" fill="currentColor"><path d="M.057 24l1.687-6.163a11.867 11.867 0 0 1-1.587-5.946C.16 5.335 5.495 0 12.05 0a11.82 11.82 0 0 1 8.413 3.488 11.82 11.82 0 0 1 3.48 8.414c-.003 6.557-5.338 11.892-11.893 11.892a11.9 11.9 0 0 1-5.688-1.448L.057 24zm6.597-3.807c1.676.995 3.276 1.591 5.392 1.592 5.448 0 9.886-4.434 9.889-9.885.002-5.462-4.415-9.89-9.881-9.892-5.452 0-9.887 4.434-9.889 9.884a9.82 9.82 0 0 0 1.523 5.26l-.999 3.648 3.965-1.607zm11.387-5.464c-.074-.124-.272-.198-.57-.347-.297-.149-1.758-.868-2.031-.967-.272-.099-.47-.149-.669.149-.198.297-.768.967-.941 1.165-.173.198-.347.223-.644.074-.297-.149-1.255-.462-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.297-.347.446-.521.151-.172.2-.296.3-.495.099-.198.05-.372-.025-.521-.075-.148-.669-1.611-.916-2.206-.242-.579-.487-.501-.669-.51l-.57-.01c-.198 0-.52.074-.792.372s-1.04 1.016-1.04 2.479 1.065 2.876 1.213 3.074c.149.198 2.095 3.2 5.076 4.487.709.306 1.263.489 1.694.626.712.226 1.36.194 1.872.118.571-.085 1.758-.719 2.006-1.413.248-.695.248-1.29.173-1.414z"/></svg>
+  </a>
 
   <!-- Floating IG -->
   <a href="https://instagram.com/labsbysantiago" class="float-ig" target="_blank" aria-label="Instagram">
