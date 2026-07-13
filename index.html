@@ -626,6 +626,98 @@
       .hero h1 { font-size: 2rem; }
       .navbar { border-radius: 14px; }
     }
+
+    /* ── Galería de Trabajos (hover-expand) ── */
+    .gallery {
+      display: flex; gap: 14px; height: 480px; width: 100%;
+    }
+    .gallery-item {
+      position: relative; flex: 1; min-width: 0; overflow: hidden;
+      border-radius: 22px; border: 1px solid var(--border);
+      background: #05070f; text-decoration: none; cursor: none;
+      transition: flex .65s cubic-bezier(.25,1,.5,1), border-color .4s, box-shadow .4s;
+    }
+    .gallery-item:hover {
+      flex: 5.2; border-color: var(--border-glow);
+      box-shadow: 0 0 50px rgba(0,206,209,.16);
+    }
+    .gallery-item img {
+      position: absolute; inset: 0; width: 100%; height: 100%;
+      object-fit: cover; object-position: top center;
+      filter: grayscale(.35) brightness(.62);
+      transition: filter .55s ease, transform .9s cubic-bezier(.25,1,.5,1);
+    }
+    .gallery-item:hover img { filter: grayscale(0) brightness(1); transform: scale(1.04); }
+
+    /* Número */
+    .gi-num {
+      position: absolute; top: 18px; left: 18px; z-index: 3;
+      font-family: var(--heading); font-weight: 800; font-size: .82rem;
+      color: var(--cyan); background: rgba(3,5,15,.6); border: 1px solid rgba(0,206,209,.3);
+      padding: 4px 10px; border-radius: 100px; backdrop-filter: blur(8px);
+    }
+
+    /* Etiqueta vertical (estado colapsado) */
+    .gi-label {
+      position: absolute; inset: 0; z-index: 2;
+      display: flex; align-items: center; justify-content: center;
+      writing-mode: vertical-rl; text-orientation: mixed;
+      font-family: var(--heading); font-weight: 800; font-size: 1.05rem;
+      letter-spacing: .04em; color: var(--text);
+      text-shadow: 0 2px 14px rgba(0,0,0,.7);
+      transition: opacity .3s ease; pointer-events: none;
+    }
+    .gallery-item:hover .gi-label { opacity: 0; }
+
+    /* Overlay expandido */
+    .gi-overlay {
+      position: absolute; inset: 0; z-index: 2;
+      display: flex; flex-direction: column; justify-content: flex-end;
+      padding: 30px;
+      background: linear-gradient(to top, rgba(3,3,5,.94) 0%, rgba(3,3,5,.5) 42%, transparent 72%);
+      opacity: 0; transition: opacity .45s ease; pointer-events: none;
+    }
+    .gallery-item:hover .gi-overlay { opacity: 1; }
+    .gi-content {
+      transform: translateY(16px); opacity: 0;
+      transition: transform .55s cubic-bezier(.25,1,.5,1) .08s, opacity .45s ease .08s;
+    }
+    .gallery-item:hover .gi-content { transform: none; opacity: 1; }
+    .gi-tag {
+      display: inline-block; font-family: var(--heading); font-size: .68rem;
+      font-weight: 800; letter-spacing: .12em; text-transform: uppercase;
+      color: var(--cyan); background: rgba(0,206,209,.1);
+      border: 1px solid rgba(0,206,209,.28); padding: 5px 12px;
+      border-radius: 100px; margin-bottom: 14px;
+    }
+    .gi-content h3 { font-size: 1.5rem; font-weight: 800; margin-bottom: 10px; }
+    .gi-content p { font-size: .92rem; color: #C3CDE0; line-height: 1.6; max-width: 460px; }
+    .gi-link {
+      display: inline-flex; align-items: center; gap: 7px; margin-top: 18px;
+      font-family: var(--heading); font-weight: 700; font-size: .9rem; color: var(--cyan);
+    }
+    .gi-link i { width: 17px; height: 17px; }
+    .gi-link-off { color: var(--muted); }
+
+    @media (max-width: 1024px) {
+      .gallery { height: 420px; }
+    }
+    /* En móvil no hay hover → tarjetas apiladas siempre visibles */
+    @media (max-width: 768px) {
+      .gallery { flex-direction: column; height: auto; gap: 18px; }
+      .gallery-item { flex: none; border-radius: 18px; }
+      .gallery-item:hover { flex: none; box-shadow: none; }
+      .gallery-item img { position: relative; height: 210px; filter: none; }
+      .gallery-item:hover img { transform: none; }
+      .gi-num { top: 14px; left: 14px; }
+      .gi-label { display: none; }
+      .gi-overlay {
+        position: relative; inset: auto; opacity: 1;
+        padding: 20px 22px 24px; background: none;
+      }
+      .gi-content { transform: none; opacity: 1; }
+      .gi-content h3 { font-size: 1.3rem; }
+    }
   </style>
 </head>
 <body>
@@ -651,6 +743,7 @@
       </a>
       <div class="nav-links">
         <a href="#proyectos" class="nav-link">Proyectos</a>
+        <a href="#trabajos" class="nav-link">Trabajos</a>
         <a href="#servicios" class="nav-link">Servicios</a>
         <a href="#nosotros" class="nav-link">Por qué yo</a>
         <a href="#proceso" class="nav-link">Proceso</a>
@@ -774,6 +867,20 @@
 
       </div>
 
+    </div>
+  </section>
+
+  <!-- Trabajos / Galería de portafolio -->
+  <section id="trabajos">
+    <div class="container">
+      <div class="reveal" style="text-align:center; margin-bottom:56px;">
+        <div class="section-label">Trabajos</div>
+        <h2 class="section-title">Cosas que <span class="gradient-text">he construido</span></h2>
+        <p class="section-sub" style="margin:0 auto;">Sitios web, dashboards y sistemas reales entregados a clientes — más mis propios productos. Pasa el cursor sobre cada uno para verlo.</p>
+      </div>
+
+      <!-- La galería se genera desde el array `portfolioItems` en el script (abajo) -->
+      <div class="gallery" id="gallery"></div>
     </div>
   </section>
 
@@ -1133,6 +1240,106 @@
     VanillaTilt.init(document.querySelectorAll('[data-tilt]'), {
       max: 8, speed: 400, glare: false
     });
+
+    // ══════════════════════════════════════════════════
+    //  GALERÍA DE TRABAJOS
+    //  Para agregar un trabajo nuevo:
+    //   1. Genera la captura (node capture-portfolio.js) o guarda una
+    //      imagen en assets/portfolio/tu-proyecto.jpg
+    //   2. Agrega un objeto a este array. Listo.
+    // ══════════════════════════════════════════════════
+    const portfolioItems = [
+      {
+        img: 'assets/portfolio/clockio.jpg',
+        title: 'Clockio',
+        tag: 'Producto propio · SaaS',
+        desc: 'Landing de mi app de fichaje con GPS. Control de horas en tiempo real para equipos con empleados de campo.',
+        url: 'https://clockioapp.com/'
+      },
+      {
+        img: 'assets/portfolio/pixies-labs.jpg',
+        title: 'PixiesLabs',
+        tag: 'Producto propio · IA',
+        desc: 'Landing del asistente de email con IA para property managers de Denver: responde correos de inquilinos solo.',
+        url: ''
+      },
+      {
+        img: 'assets/portfolio/la-mussa.jpg',
+        title: 'La Mussa Salón',
+        tag: 'Sitio web · Cliente',
+        desc: 'Web para un salón de uñas y belleza: diseño elegante, galería de trabajos y reservas por WhatsApp.',
+        url: ''
+      },
+      {
+        img: 'assets/portfolio/mabel.jpg',
+        title: 'Mabel Joyería',
+        tag: 'Sitio web · Cliente',
+        desc: 'Sitio para una joyería y relojería artesanal con más de 55 años de historia. "El arte de durar generaciones".',
+        url: ''
+      },
+      {
+        img: 'assets/portfolio/creaprint-web.jpg',
+        title: 'CreaPrint',
+        tag: 'Sitio web · Cliente',
+        desc: 'Web de marca para una imprenta y rotulación de gran formato. Diseño audaz: "ideas diferentes".',
+        url: ''
+      },
+      {
+        img: 'assets/portfolio/creaprint-saas.jpg',
+        title: 'CreaPrint · Sistema',
+        tag: 'Software · Cliente',
+        desc: 'Sistema de gestión de producción multi-rol (jefe, gerente y planta) para controlar los pedidos de la imprenta.',
+        url: ''
+      },
+      {
+        img: 'assets/portfolio/lv-dashboard.jpg',
+        title: 'LV Maison Denver',
+        tag: 'Dashboard · Cliente',
+        desc: 'Panel de ventas de lujo con metas diarias, semanales y mensuales, y ranking de asesores en vivo.',
+        url: ''
+      },
+      {
+        img: 'assets/portfolio/monster-grip.jpg',
+        title: 'Monster Grip',
+        tag: 'Automatización · Cliente',
+        desc: 'Dashboard privado del bot de WhatsApp que atiende, califica y da seguimiento a los clientes 24/7.',
+        url: ''
+      }
+    ];
+
+    const galEl = document.getElementById('gallery');
+    if (galEl) {
+      galEl.innerHTML = portfolioItems.map((it, i) => {
+        const open = it.url ? `<a href="${it.url}" target="_blank" rel="noopener" class="gallery-item">` : `<div class="gallery-item">`;
+        const close = it.url ? `</a>` : `</div>`;
+        const cta = it.url
+          ? `<span class="gi-link">Ver sitio <i data-lucide="arrow-up-right"></i></span>`
+          : `<span class="gi-link gi-link-off">Proyecto entregado <i data-lucide="check" style="width:16px;height:16px;"></i></span>`;
+        return `${open}
+          <img src="${it.img}" alt="${it.title}" loading="lazy">
+          <span class="gi-num">${String(i + 1).padStart(2, '0')}</span>
+          <span class="gi-label">${it.title}</span>
+          <div class="gi-overlay">
+            <div class="gi-content">
+              <span class="gi-tag">${it.tag}</span>
+              <h3>${it.title}</h3>
+              <p>${it.desc}</p>
+              ${cta}
+            </div>
+          </div>
+        ${close}`;
+      }).join('');
+      lucide.createIcons();
+
+      // Entrada con stagger al hacer scroll (sensación tipo Framer Motion)
+      gsap.fromTo('.gallery-item',
+        { opacity: 0, y: 44 },
+        {
+          opacity: 1, y: 0, duration: .7, ease: 'power3.out', stagger: .07,
+          scrollTrigger: { trigger: '#trabajos', start: 'top 78%', toggleActions: 'play none none none' }
+        }
+      );
+    }
   </script>
 </body>
 </html>
