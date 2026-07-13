@@ -627,96 +627,65 @@
       .navbar { border-radius: 14px; }
     }
 
-    /* ── Galería de Trabajos (hover-expand) ── */
-    .gallery {
-      display: flex; gap: 14px; height: 480px; width: 100%;
-    }
-    .gallery-item {
-      position: relative; flex: 1; min-width: 0; overflow: hidden;
-      border-radius: 22px; border: 1px solid var(--border);
-      background: #05070f; text-decoration: none; cursor: none;
-      transition: flex .65s cubic-bezier(.25,1,.5,1), border-color .4s, box-shadow .4s;
-    }
-    .gallery-item:hover {
-      flex: 5.2; border-color: var(--border-glow);
-      box-shadow: 0 0 50px rgba(0,206,209,.16);
-    }
-    .gallery-item img {
-      position: absolute; inset: 0; width: 100%; height: 100%;
-      object-fit: cover; object-position: top center;
-      filter: grayscale(.35) brightness(.62);
-      transition: filter .55s ease, transform .9s cubic-bezier(.25,1,.5,1);
-    }
-    .gallery-item:hover img { filter: grayscale(0) brightness(1); transform: scale(1.04); }
-
-    /* Número */
-    .gi-num {
-      position: absolute; top: 18px; left: 18px; z-index: 3;
-      font-family: var(--heading); font-weight: 800; font-size: .82rem;
-      color: var(--cyan); background: rgba(3,5,15,.6); border: 1px solid rgba(0,206,209,.3);
-      padding: 4px 10px; border-radius: 100px; backdrop-filter: blur(8px);
-    }
-
-    /* Etiqueta vertical (estado colapsado) */
-    .gi-label {
-      position: absolute; inset: 0; z-index: 2;
+    /* ── Trabajos: scroll-stack de tarjetas ── */
+    .stack { position: relative; margin-top: 10px; }
+    .sc-wrap {
+      height: 100vh; position: sticky; top: 0;
       display: flex; align-items: center; justify-content: center;
-      writing-mode: vertical-rl; text-orientation: mixed;
-      font-family: var(--heading); font-weight: 800; font-size: 1.05rem;
-      letter-spacing: .04em; color: var(--text);
-      text-shadow: 0 2px 14px rgba(0,0,0,.7);
-      transition: opacity .3s ease; pointer-events: none;
+      padding: 0 3%;
     }
-    .gallery-item:hover .gi-label { opacity: 0; }
+    .sc-card {
+      width: min(1000px, 100%);
+      background: #080b13; border: 1px solid var(--border);
+      border-radius: 22px; overflow: hidden;
+      box-shadow: 0 45px 90px -35px rgba(0,0,0,.9), 0 0 0 1px rgba(0,206,209,.06);
+      display: flex; flex-direction: column;
+    }
+    .sc-bar {
+      display: flex; align-items: center; gap: 14px;
+      padding: 0 18px; height: 44px; flex-shrink: 0;
+      background: rgba(255,255,255,.03); border-bottom: 1px solid var(--border);
+    }
+    .sc-dots { display: flex; gap: 7px; }
+    .sc-dots span { width: 11px; height: 11px; border-radius: 50%; }
+    .sc-url {
+      flex: 1; max-width: 340px; margin: 0 auto; text-align: center;
+      font-family: var(--body); font-size: .82rem; color: var(--muted);
+      background: rgba(0,0,0,.35); border: 1px solid var(--border);
+      padding: 4px 16px; border-radius: 100px;
+      overflow: hidden; text-overflow: ellipsis; white-space: nowrap;
+    }
+    .sc-count { font-family: var(--heading); font-weight: 800; font-size: .78rem; color: var(--cyan); }
+    .sc-media { position: relative; width: 100%; aspect-ratio: 16 / 10; max-height: 60vh; overflow: hidden; }
+    .sc-media img { width: 100%; height: 100%; object-fit: cover; object-position: top center; display: block; }
+    .sc-info {
+      position: absolute; left: 0; right: 0; bottom: 0; padding: 32px 36px;
+      background: linear-gradient(to top, rgba(5,7,13,.97) 8%, rgba(5,7,13,.78) 46%, transparent 100%);
+    }
+    .sc-tag {
+      display: inline-block; font-family: var(--heading); font-size: .68rem; font-weight: 800;
+      letter-spacing: .12em; text-transform: uppercase; color: var(--cyan);
+      background: rgba(0,206,209,.1); border: 1px solid rgba(0,206,209,.28);
+      padding: 5px 12px; border-radius: 100px; margin-bottom: 14px;
+    }
+    .sc-info h3 { font-size: clamp(1.5rem, 3vw, 2.1rem); font-weight: 900; letter-spacing: -.02em; margin-bottom: 10px; }
+    .sc-info p { font-size: .98rem; color: #C3CDE0; line-height: 1.6; max-width: 640px; }
+    .sc-cta {
+      display: inline-flex; align-items: center; gap: 8px; margin-top: 18px;
+      font-family: var(--heading); font-weight: 700; font-size: .95rem;
+      color: var(--cyan); text-decoration: none; cursor: none;
+    }
+    .sc-cta i { width: 17px; height: 17px; }
+    .sc-cta.off { color: var(--muted); }
 
-    /* Overlay expandido */
-    .gi-overlay {
-      position: absolute; inset: 0; z-index: 2;
-      display: flex; flex-direction: column; justify-content: flex-end;
-      padding: 30px;
-      background: linear-gradient(to top, rgba(3,3,5,.94) 0%, rgba(3,3,5,.5) 42%, transparent 72%);
-      opacity: 0; transition: opacity .45s ease; pointer-events: none;
-    }
-    .gallery-item:hover .gi-overlay { opacity: 1; }
-    .gi-content {
-      transform: translateY(16px); opacity: 0;
-      transition: transform .55s cubic-bezier(.25,1,.5,1) .08s, opacity .45s ease .08s;
-    }
-    .gallery-item:hover .gi-content { transform: none; opacity: 1; }
-    .gi-tag {
-      display: inline-block; font-family: var(--heading); font-size: .68rem;
-      font-weight: 800; letter-spacing: .12em; text-transform: uppercase;
-      color: var(--cyan); background: rgba(0,206,209,.1);
-      border: 1px solid rgba(0,206,209,.28); padding: 5px 12px;
-      border-radius: 100px; margin-bottom: 14px;
-    }
-    .gi-content h3 { font-size: 1.5rem; font-weight: 800; margin-bottom: 10px; }
-    .gi-content p { font-size: .92rem; color: #C3CDE0; line-height: 1.6; max-width: 460px; }
-    .gi-link {
-      display: inline-flex; align-items: center; gap: 7px; margin-top: 18px;
-      font-family: var(--heading); font-weight: 700; font-size: .9rem; color: var(--cyan);
-    }
-    .gi-link i { width: 17px; height: 17px; }
-    .gi-link-off { color: var(--muted); }
-
-    @media (max-width: 1024px) {
-      .gallery { height: 420px; }
-    }
-    /* En móvil no hay hover → tarjetas apiladas siempre visibles */
     @media (max-width: 768px) {
-      .gallery { flex-direction: column; height: auto; gap: 18px; }
-      .gallery-item { flex: none; border-radius: 18px; }
-      .gallery-item:hover { flex: none; box-shadow: none; }
-      .gallery-item img { position: relative; height: 210px; filter: none; }
-      .gallery-item:hover img { transform: none; }
-      .gi-num { top: 14px; left: 14px; }
-      .gi-label { display: none; }
-      .gi-overlay {
-        position: relative; inset: auto; opacity: 1;
-        padding: 20px 22px 24px; background: none;
-      }
-      .gi-content { transform: none; opacity: 1; }
-      .gi-content h3 { font-size: 1.3rem; }
+      .stack { display: flex; flex-direction: column; gap: 8px; }
+      .sc-wrap { height: auto; position: relative; top: auto; padding: 0; margin-bottom: 22px; }
+      .sc-card { width: 100%; }
+      .sc-media { max-height: none; aspect-ratio: 16 / 11; }
+      .sc-info { padding: 20px 20px 24px; }
+      .sc-info p { font-size: .9rem; }
+      .sc-url { max-width: 180px; font-size: .72rem; }
     }
   </style>
 </head>
@@ -876,11 +845,11 @@
       <div class="reveal" style="text-align:center; margin-bottom:56px;">
         <div class="section-label">Trabajos</div>
         <h2 class="section-title">Cosas que <span class="gradient-text">he construido</span></h2>
-        <p class="section-sub" style="margin:0 auto;">Sitios web, dashboards y sistemas reales entregados a clientes — más mis propios productos. Pasa el cursor sobre cada uno para verlo.</p>
+        <p class="section-sub" style="margin:0 auto;">Sitios web, dashboards y sistemas reales entregados a clientes — más mis propios productos. Desplázate para ver cada proyecto a pantalla completa.</p>
       </div>
 
-      <!-- La galería se genera desde el array `portfolioItems` en el script (abajo) -->
-      <div class="gallery" id="gallery"></div>
+      <!-- El scroll-stack se genera desde el array `portfolioItems` en el script (abajo) -->
+      <div class="stack" id="stack"></div>
     </div>
   </section>
 
@@ -1253,6 +1222,7 @@
         img: 'assets/portfolio/clockio.jpg',
         title: 'Clockio',
         tag: 'Producto propio · SaaS',
+        host: 'clockioapp.com',
         desc: 'Landing de mi app de fichaje con GPS. Control de horas en tiempo real para equipos con empleados de campo.',
         url: 'https://clockioapp.com/'
       },
@@ -1260,6 +1230,7 @@
         img: 'assets/portfolio/pixies-labs.jpg',
         title: 'PixiesLabs',
         tag: 'Producto propio · IA',
+        host: 'PixiesLabs · landing',
         desc: 'Landing del asistente de email con IA para property managers de Denver: responde correos de inquilinos solo.',
         url: ''
       },
@@ -1267,6 +1238,7 @@
         img: 'assets/portfolio/la-mussa.jpg',
         title: 'La Mussa Salón',
         tag: 'Sitio web · Cliente',
+        host: 'La Mussa Salón · sitio web',
         desc: 'Web para un salón de uñas y belleza: diseño elegante, galería de trabajos y reservas por WhatsApp.',
         url: ''
       },
@@ -1274,6 +1246,7 @@
         img: 'assets/portfolio/mabel.jpg',
         title: 'Mabel Joyería',
         tag: 'Sitio web · Cliente',
+        host: 'Mabel Joyería · sitio web',
         desc: 'Sitio para una joyería y relojería artesanal con más de 55 años de historia. "El arte de durar generaciones".',
         url: ''
       },
@@ -1281,6 +1254,7 @@
         img: 'assets/portfolio/creaprint-web.jpg',
         title: 'CreaPrint',
         tag: 'Sitio web · Cliente',
+        host: 'creaprint.es',
         desc: 'Web de marca para una imprenta y rotulación de gran formato. Diseño audaz: "ideas diferentes".',
         url: ''
       },
@@ -1288,13 +1262,15 @@
         img: 'assets/portfolio/creaprint-saas.jpg',
         title: 'CreaPrint · Sistema',
         tag: 'Software · Cliente',
-        desc: 'Sistema de gestión de producción multi-rol (jefe, gerente y planta) para controlar los pedidos de la imprenta.',
+        host: 'app.creaprint.es · panel del jefe',
+        desc: 'Sistema de gestión de producción multi-rol (jefe, gerente y planta): tareas, facturación y control de pedidos.',
         url: ''
       },
       {
         img: 'assets/portfolio/lv-dashboard.jpg',
         title: 'LV Maison Denver',
         tag: 'Dashboard · Cliente',
+        host: 'LV Maison · dashboard de ventas',
         desc: 'Panel de ventas de lujo con metas diarias, semanales y mensuales, y ranking de asesores en vivo.',
         url: ''
       },
@@ -1302,43 +1278,51 @@
         img: 'assets/portfolio/monster-grip.jpg',
         title: 'Monster Grip',
         tag: 'Automatización · Cliente',
-        desc: 'Dashboard privado del bot de WhatsApp que atiende, califica y da seguimiento a los clientes 24/7.',
+        host: 'Monster Grip · dashboard privado',
+        desc: 'Dashboard del bot de WhatsApp que atiende, califica y da seguimiento a los clientes 24/7 (datos de ejemplo).',
         url: ''
       }
     ];
 
-    const galEl = document.getElementById('gallery');
-    if (galEl) {
-      galEl.innerHTML = portfolioItems.map((it, i) => {
-        const open = it.url ? `<a href="${it.url}" target="_blank" rel="noopener" class="gallery-item">` : `<div class="gallery-item">`;
-        const close = it.url ? `</a>` : `</div>`;
+    const stackEl = document.getElementById('stack');
+    if (stackEl) {
+      const n = portfolioItems.length;
+      stackEl.innerHTML = portfolioItems.map((it, i) => {
         const cta = it.url
-          ? `<span class="gi-link">Ver sitio <i data-lucide="arrow-up-right"></i></span>`
-          : `<span class="gi-link gi-link-off">Proyecto entregado <i data-lucide="check" style="width:16px;height:16px;"></i></span>`;
-        return `${open}
-          <img src="${it.img}" alt="${it.title}" loading="lazy">
-          <span class="gi-num">${String(i + 1).padStart(2, '0')}</span>
-          <span class="gi-label">${it.title}</span>
-          <div class="gi-overlay">
-            <div class="gi-content">
-              <span class="gi-tag">${it.tag}</span>
-              <h3>${it.title}</h3>
-              <p>${it.desc}</p>
-              ${cta}
+          ? `<a href="${it.url}" target="_blank" rel="noopener" class="sc-cta">Ver sitio en vivo <i data-lucide="arrow-up-right"></i></a>`
+          : `<span class="sc-cta off">Proyecto entregado <i data-lucide="check"></i></span>`;
+        return `
+        <div class="sc-wrap">
+          <article class="sc-card">
+            <div class="sc-bar">
+              <span class="sc-dots"><span style="background:#ff5f57"></span><span style="background:#febc2e"></span><span style="background:#28c840"></span></span>
+              <span class="sc-url">${it.host}</span>
+              <span class="sc-count">${String(i + 1).padStart(2, '0')} / ${String(n).padStart(2, '0')}</span>
             </div>
-          </div>
-        ${close}`;
+            <div class="sc-media">
+              <img src="${it.img}" alt="${it.title}" loading="lazy">
+              <div class="sc-info">
+                <span class="sc-tag">${it.tag}</span>
+                <h3>${it.title}</h3>
+                <p>${it.desc}</p>
+                ${cta}
+              </div>
+            </div>
+          </article>
+        </div>`;
       }).join('');
       lucide.createIcons();
 
-      // Entrada con stagger al hacer scroll (sensación tipo Framer Motion)
-      gsap.fromTo('.gallery-item',
-        { opacity: 0, y: 44 },
-        {
-          opacity: 1, y: 0, duration: .7, ease: 'power3.out', stagger: .07,
-          scrollTrigger: { trigger: '#trabajos', start: 'top 78%', toggleActions: 'play none none none' }
-        }
-      );
+      // Entrada de cada tarjeta al aparecer (sensación tipo Framer Motion)
+      gsap.utils.toArray('.sc-card').forEach(card => {
+        gsap.fromTo(card,
+          { opacity: 0, y: 60, scale: .96 },
+          {
+            opacity: 1, y: 0, scale: 1, duration: .8, ease: 'power3.out',
+            scrollTrigger: { trigger: card.closest('.sc-wrap'), start: 'top 78%', toggleActions: 'play none none reverse' }
+          }
+        );
+      });
     }
   </script>
 </body>
